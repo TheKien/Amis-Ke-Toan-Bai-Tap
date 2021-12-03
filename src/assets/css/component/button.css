@@ -1,5 +1,4 @@
 .m-btn {
-  background-color: #2ca01c;
   border-radius: 5px;
   height: 36px;
   min-width: 100px;
@@ -12,8 +11,24 @@
   border: none;
 }
 
-.m-btn:hover {
+.m-btn.m-btn-success {
+  background-color: #2ca01c;
+}
+
+.m-btn.m-btn-success:hover {
   background-color: #35bf22;
+}
+
+.m-btn.m-btn-gray {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #8d9096;
+  padding: 6px 16px;
+  min-width: 20px;
+}
+
+.m-btn.m-btn-gray:hover {
+  background-color: #d2d3d6;
 }
 
 .m-btn.m-btn-icon {

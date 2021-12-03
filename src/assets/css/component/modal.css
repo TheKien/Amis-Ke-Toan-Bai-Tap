@@ -1,6 +1,6 @@
 .m-modal-box {
   position: absolute;
-  top: 0px;
+  top: 24px;
   left: 0px;
   right: 0px;
   width: 66vw;
@@ -15,6 +15,7 @@
   box-shadow: 0 3px 6px rgba(0 0 0 / 34%);
   z-index: 3;
 }
+/* Modal header */
 .m-modal-header {
   padding: 20px 12px 20px 32px;
   display: flex;
@@ -33,12 +34,10 @@
 .m-modal-icon{
   padding: 12px;
 }
+
 /* Modal content */
 .m-modal-content {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding: 0 24px 24px 24px;
+  padding: 0 32px;
 }
 .m-modal-content .m-popup-icon {
   display: flex;
@@ -55,64 +54,19 @@
 
 /* Modal Footer */
 .m-modal-footer {
-  box-sizing: border-box;
-  background-color: #e9ebee;
+  padding-top: 20px;
+  margin: 30px 32px;
+  border-top: 1px solid #e0e0e0;
   display: flex;
-  justify-content: end;
-  align-items: center;
-  height: 60px;
-  padding-right: 24px;
+  justify-content: space-between;
 }
 
-.m-modal-footer button {
-  margin-left: 16px;
-}
-
-/* MODAL MEDIUM  */
-.m-modal .m-modal-md {
-  width: 60vw;
-}
-
-/* Modal header */
-.m-modal-md .m-modal-header .m-modal-title {
-  font-size: 20px;
-  font-weight: 100;
-}
-
-/* Modal content */
-.m-modal-md .m-modal-content {
-  padding: 24px;
-}
-.m-modal-box-sm {
-  display: none;
-  position: absolute;
-  left: 35%;
-  top: 30%;
-  z-index: 10;
-}
-/* MODAL SMALL */
-.m-modal-sm {
-  width: 30vw;
-}
-/* Modal header */
-.m-modal-sm .m-modal-header .m-modal-title {
-  font-size: 18px;
-  font-weight: 100;
-}
-/* Modal content */
-.m-modal-sm .m-modal-content {
-  justify-content: center;
-  align-items: center;
-  padding: 0 24px 24px 24px;
-}
-
-/* Modal Backgroud */
 .modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(127, 140, 141, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }

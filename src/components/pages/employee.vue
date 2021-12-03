@@ -4,7 +4,7 @@
     <div class="content">
         <div class="content-header m-flex-between">
             <div class="content-title">Nhân viên </div>
-            <button class="m-btn" @click="employeeModal=true">Thêm mới nhân viên</button>
+            <button class="m-btn m-btn-success" @click="employeeModal=true">Thêm mới nhân viên</button>
         </div>
 
         <div class="content-main">
@@ -73,20 +73,109 @@
                         <input type="checkbox" class="m-checkbox"><span style="margin-left: 10px">Là khách hàng</span>
                         <input type="checkbox" class="m-checkbox"><span style="margin-left: 10px">Là nhà cung cấp</span>
                     </div>
-                    <div style="flex: 1"></div>
-                    
                 </div>
                 <div class="m-modal-icon m-flex">
                     <div class="mi mi-24 mi-help"></div>
                     <div class="m-modal-close mi mi-24 mi-close" @click="employeeModal=false"></div>
                 </div> 
             </div>
-             
+            <div class="m-modal-content">
+                <div class="m-flex m-pb-12">
+                    <div class="m-pr-26 m-form-group" >
+                        <div class="m-form-row m-flex">
+                            <div class="m-pr-6">
+                                <label class="m-lable" for="">Mã <span> *</span></label>
+                                <input type="text" class="m-form-input" style="width:150px">
+                            </div>
+                            <div style="flex: 1;">
+                                <label class="m-lable" for="">Tên <span> *</span></label>
+                                <input type="text" class="m-form-input" >
+                            </div>
+                        </div>
+                        
+                        <div class="m-form-row">
+                            <label class="m-lable">Đơn vị <span> *</span></label>
+                            <input type="text" class="m-form-input" >
+                        </div>
+                        <div class="m-form-row">
+                            <label class="m-lable">Chức danh</label>
+                            <input type="text" class="m-form-input" >
+                        </div>
+                    </div>
+                    <div class="m-form-group">
+                        <div class="m-form-row m-flex">
+                            <div class="m-pr-6">
+                                <label class="m-lable" for="">Ngày sinh</label>
+                                <input type="date" class="m-form-input">
+                            </div>
+                            <div class="m-pl-10">
+                                <label class="m-lable" for="">Giới tính</label>
+                                <div class="m-flex-item-center" style="height:30px">
+                                    <input type="radio"><span class="m-pl-10 m-pr-20">Nam</span>
+                                    <input type="radio"><span class="m-pl-10 m-pr-20">Nữ</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="m-form-row m-flex">
+                            <div class="m-pr-6" style="flex: 1;">
+                                <label class="m-lable" for="">Số CMND</label>
+                                <input type="text" class="m-form-input">
+                            </div>
+                            <div>
+                                <label class="m-lable" for="">Ngày cấp</label>
+                                <input type="date" class="m-form-input" >
+                            </div>
+                        </div>
+                        <div class="m-form-row">
+                            <label class="m-lable" for="">Nơi cấp</label>
+                            <input type="text" class="m-form-input" >
+                        </div>
+                    </div>
+                </div>
+                <div class="m-form-row">
+                    <label class="m-lable" for="">Địa chỉ</label>
+                    <input type="text" class="m-form-input">
+                </div>
+                <div class="m-form-row m-flex">
+                    <div class="m-pr-6">
+                        <label class="m-lable" for="">ĐT di động</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                    <div class="m-pr-6">
+                        <label class="m-lable" for="">ĐT cố định</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                    <div>
+                        <label class="m-lable" for="">Email</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                </div>
+                <div class="m-form-row m-flex">
+                    <div class="m-pr-6">
+                        <label class="m-lable" for="">Tài khoản ngân hàng</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                    <div class="m-pr-6">
+                        <label class="m-lable" for="">Tên ngân hàng</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                    <div>
+                        <label class="m-lable" for="">Chi nhánh</label>
+                        <input type="text" class="m-form-input">
+                    </div>
+                </div>
+            </div>
+             <div class="m-modal-footer">
+                <button class="m-btn m-btn-gray">Huỷ</button>
+                <div>
+                    <button class="m-btn m-btn-gray m-mr-10">Cất</button>
+                    <button class="m-btn m-btn-success">Cất và Thêm</button>
+                </div>
+            </div>
         </div>
         <div class="modal-background"></div>
-
     </div>
-
 </div>
 
 </template>
@@ -97,14 +186,13 @@ export default {
     data() {
         return {
             employees : [],
-            employeeModal: false
+            employeeModal: true
         }
     },
     created() {
         axios.get(`http://cukcuk.manhnv.net/api/v1/Employees`)
         .then(response => {
             this.employees = response.data;
-            console.log(this.employees)
         })
         .catch(e => {
             alert(e)
