@@ -1,0 +1,36 @@
+.m-border-none {
+  border: none;
+  outline: unset;
+}  
+
+.m-text-right {
+  text-align: right;
+}
+
+.m-text-left {
+  text-align: left;
+}
+
+.m-text-center {
+  text-align: center;
+}
+
+.m-flex {
+  display: flex;
+}
+
+.m-flex-between {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.m-flex-item-center {
+  display: flex;
+  align-items: center;
+}
+
+.m-flex-justify-center {
+  display: flex;
+  justify-content: center;
+}

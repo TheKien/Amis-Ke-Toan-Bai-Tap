@@ -1,0 +1,36 @@
+@import url("common/common.css");
+@import url("component/button.css");
+@import url("component/input.css");
+@import url("component/table.css");
+@import url("component/checkbox.css");
+@import url("component/modal.css");
+/* @import url("component/combobox.css");
+
+@import url("component/nagivation.css");
+@import url("component/dropdown.css");
+@import url("component/chip-status.css");
+@import url("component/toast.css");
+ */
+@import url("component/icon.css");
+body {
+  font-family: NotoSans;
+  font-size: 13px;
+}
+*{
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+}
+@font-face {
+  font-family: NotoSans;
+  src: url("../content/fonts/notosans-regular.2cb88a13.woff2");
+}
+@font-face {
+  font-family: NotoSans-Bold;
+  src: url("../content/fonts/notosans-bold.3ede5aff.woff2");
+}
+@font-face {
+  font-family: NotoSans-Italic;
+  src: url("../content/fonts/notosans-italic.1c1aaac9.woff2");
+}

@@ -1,0 +1,1345 @@
+.mi {
+    background: url(../../content/img/Sprites.64af8f61.svg) no-repeat;
+    cursor: pointer;
+  }
+  .mi-90 {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    min-height: 90px;
+  }
+  .mi-85 {
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    min-height: 85px;
+  }
+  .mi-80 {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+  }
+  .mi-65 {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    min-height: 65px;
+  }
+  .mi-50 {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+  }
+  .mi-48 {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .mi-32 {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  .mi-24 {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  .mi-16 {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+  }
+  .mi-20 {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+  .mi-22 {
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+  }
+  .mi-18 {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+  }
+  .mi-14 {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+  }
+  .mi-30 {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+  }
+  .mi-64 {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+  }
+  .mi-h-340 {
+    height: 340px;
+  }
+  .mi-8 {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+  }
+  .mi-restore-down {
+    background-position: -1976px -471px;
+  }
+  .mi-me-email {
+    background-position: -1796px -311px;
+  }
+  .mi-uppercase {
+    background-position: -350px -1027px;
+  }
+  .mi-text-left {
+    background-position: -400px -1027px;
+  }
+  .mi-text-right {
+    background-position: -549px -1027px;
+  }
+  .mi-text-center {
+    background-position: -448px -1028px;
+  }
+  .mi-maximize {
+    background-position: -2017px -472px;
+  }
+  .mi-recent-log {
+    background-position: -648px -144px;
+  }
+  .mi-tour {
+    background-position: -984px -144px;
+  }
+  .mi-search__nav {
+    background-position: -89px -32px;
+  }
+  .mi-search__nav--hover {
+    background-position: -88px -88px;
+  }
+  .mi-search__nav-2 {
+    background-position: -89px -32px;
+  }
+  .mi-search__nav-2:hover {
+    background-position: -424px -32px;
+  }
+  .mi-setting__nav {
+    background-position: -675px -30px;
+  }
+  .mi-setting__nav--hover {
+    background-position: -144px -88px;
+  }
+  .mi-help__nav {
+    background-position: -731px -30px;
+  }
+  .mi-help__nav--hover {
+    background-position: -199px -88px;
+  }
+  .mi-bell__nav {
+    background-position: -788px -30px;
+  }
+  .mi-bell__nav--hover {
+    background-position: -255px -88px;
+  }
+  .mi-three-stripes {
+    background-position: -843px -30px;
+  }
+  .mi-category {
+    background-position: -568px -30px;
+  }
+  .mi-category--hover {
+    background-position: -32px -88px;
+  }
+  .mi-lookup {
+    background-position: -200px -144px;
+  }
+  .mi-setting {
+    background-position: -88px -256px;
+  }
+  .mi-setting__detail {
+    background-position: -32px -144px;
+  }
+  .mi-setting__list {
+    background-position: -88px -200px;
+  }
+  .mi-setting__list:hover {
+    background-position: -88px -256px;
+  }
+  .mi-setting__list-bold {
+    background-position: -1376px -88px;
+  }
+  .mi-setting__list-bold:hover {
+    background-position: -1376px -144px;
+  }
+  .mi-help {
+    background-position: -89px -144px;
+  }
+  .mi-attach {
+    background-position: -539px -203px;
+  }
+  .mi-close {
+    background-position: -144px -144px;
+  }
+  .mi-arrow-check-all {
+    background-position: -256px -143px;
+  }
+  .mi-tree-collapse {
+    background-position: -368px -144px;
+  }
+  .mi-tree-expand {
+    background-position: -424px -144px;
+  }
+  .mi-exclamation--success {
+    background-position: -480px -144px;
+  }
+  .mi-exclamation--error {
+    background-position: -536px -144px;
+  }
+  .mi-exclamation-cell--error {
+    background-position: -1696px -312px;
+  }
+  .mi-icon-warning-16 {
+    background-position: -1935px -205px;
+  }
+  .mi-exclamation--warning {
+    background-position: -592px -144px;
+  }
+  .mi-exclamation--warning-16 {
+    background-position: -1088px -312px;
+  }
+  .mi-print {
+    background-position: -33px -255px;
+  }
+  .mi-print__footer {
+    background-position: -33px -200px;
+  }
+  .mi-print__footer:hover {
+    background-position: -33px -256px;
+  }
+  .mi-print__footer-bold {
+    background-position: -1208px -88px;
+  }
+  .mi-print__footer-bold:hover {
+    background-position: -1208px -144px;
+  }
+  .mi-updating-data {
+    background-position: -1085px -311px;
+  }
+  .mi-export {
+    background-position: -144px -255px;
+  }
+  .mi-export__list {
+    background-position: -144px -200px;
+  }
+  .mi-export__list:hover {
+    background-position: -144px -256px;
+  }
+  .mi-export__excel-small {
+    background-position: -2157px -518px;
+  }
+  .mi-export__excel-small:hover {
+    background-position: -2156px -468px;
+  }
+  .mi-export__excel {
+    background-position: -705px -200px;
+  }
+  .mi-export__excel:hover {
+    background-position: -705px -256px;
+  }
+  .mi-export__excel-bold {
+    background-position: -1264px -88px;
+  }
+  .mi-export__excel-bold:hover {
+    background-position: -1264px -144px;
+  }
+  .mi-import__list {
+    background-position: -480px -200px;
+  }
+  .mi-import__list:hover {
+    background-position: -480px -256px;
+  }
+  .mi-ultity {
+    background-position: -200px -255px;
+  }
+  .mi-ultity__footer {
+    background-position: -200px -199px;
+  }
+  .mi-ultity__footer:hover {
+    background-position: -200px -256px;
+  }
+  .mi-collapse__list--primary {
+    background-position: -256px -255px;
+  }
+  .mi-collapse__list--disabled {
+    background-position: -256px -199px;
+  }
+  .mi-expand__list--primary {
+    background-position: -314px -255px;
+  }
+  .mi-expand__list--disabled {
+    background-position: -314px -199px;
+  }
+  .mi-refresh {
+    background-position: -423px -201px;
+  }
+  .mi-refresh-bold,
+  .mi-refresh:hover {
+    background-position: -1097px -88px;
+  }
+  .mi-refresh-bold:hover {
+    background-position: -1097px -144px;
+  }
+  .mi-choose-ref {
+    background-position: -368px -200px;
+  }
+  .mi-exclamation–warning {
+    background-position: -592px -144px;
+  }
+  .mi-file {
+    background-position: -651px -308px;
+  }
+  .mi-email {
+    background-position: -816px -200px;
+  }
+  .mi-email:hover {
+    background-position: -816px -256px;
+  }
+  .mi-email-bold {
+    background-position: -1152px -88px;
+  }
+  .mi-email-bold:hover {
+    background-position: -1152px -144px;
+  }
+  .mi-print-meters {
+    background-position: -592px -200px;
+  }
+  .mi-print-meters:hover {
+    background-position: -592px -256px;
+  }
+  .mi-chat__nav {
+    background-position: -899px -30px;
+  }
+  .mi-chat__nav--unread {
+    background-position: -1376px -28px;
+  }
+  .mi-sync__nav {
+    background-position: -492px -32px;
+  }
+  .mi-excel__nav {
+    background-position: -704px -200px;
+  }
+  .mi-excel__nav:hover {
+    background-position: -704px -256px;
+  }
+  .mi-xml__nav {
+    background-position: -760px -199px;
+  }
+  .mi-xml,
+  .mi-xml__nav:hover {
+    background-position: -760px -256px;
+  }
+  .mi-fx-24 {
+    background-position: -1570px -516px;
+  }
+  .mi-mtax-logo-24 {
+    background-position: -796px -403px;
+  }
+  .mi-check-report {
+    background-position: -1600px -200px;
+  }
+  .mi-3-dot {
+    background-position: -1078px -407px;
+  }
+  .mi-me-invoice-status {
+    background-position: -1842px -311px;
+  }
+  .mi-play-video {
+    background-position: -992px -312px;
+  }
+  .mi-bulb {
+    background-position: -1500px -407px;
+  }
+  .mi-exclamation--success--tiny {
+    background-position: -1378px -408px;
+  }
+  .mi-tick--active {
+    background-position: -512px -408px;
+  }
+  .mi-tick--inactive {
+    background-position: -560px -408px;
+  }
+  .mi-arrow-dropdown {
+    background-position: -560px -359px;
+  }
+  .mi-search {
+    background-position: -992px -360px;
+  }
+  .mi-search--success {
+    background-position: -800px -360px;
+  }
+  .mi-search-nav {
+    background-position: -425px -32px;
+  }
+  .mi-plus--success {
+    background-position: -32px -312px;
+  }
+  .mi-plus--link {
+    background-position: -800px -312px;
+  }
+  .mi-close--small {
+    background-position: -80px -312px;
+  }
+  .mi-setting--small {
+    background-position: -512px -312px;
+  }
+  .mi-tree-expand--small {
+    background-position: -607px -311px;
+  }
+  .mi-tree-collapse--small {
+    background-position: -559px -312px;
+  }
+  .mi-refresh--small {
+    background-position: -2126px -522px;
+  }
+  .mi-refresh--small:hover {
+    background-position: -1328px -312px;
+  }
+  .mi-calendar {
+    background-position: -128px -307px;
+  }
+  .mi-upload {
+    background-position: -176px -312px;
+  }
+  .mi-picture {
+    background-position: -224px -312px;
+  }
+  .mi-paperclip {
+    background-position: -272px -311px;
+  }
+  .mi-arrow-right--success {
+    background-position: -319px -312px;
+  }
+  .mi-arrow-left--success {
+    background-position: -368px -311px;
+  }
+  .mi-pencil {
+    background-position: -416px -312px;
+  }
+  .mi-eye {
+    background-position: -984px -88px;
+  }
+  .mi-32.mi-eye {
+    background-position: -981px -84px;
+  }
+  .mi-garbage {
+    background-position: -463px -312px;
+  }
+  .mi-chevron-left {
+    background-position: -33px -360px;
+  }
+  .mi-chevron-right {
+    background-position: -80px -360px;
+  }
+  .mi-chevron-down {
+    background-position: -1128px -360px;
+  }
+  .mi-chevron-up--primary {
+    background-position: -128px -360px;
+  }
+  .mi-chevron-down--primary {
+    background-position: -176px -360px;
+  }
+  .mi-chevron-left--primary {
+    background-position: -224px -360px;
+  }
+  .mi-chevron-right--primary {
+    background-position: -272px -359px;
+  }
+  .mi-chevron-left--disabled {
+    background-position: -33px -408px;
+  }
+  .mi-chevron-right--disabled {
+    background-position: -80px -407px;
+  }
+  .mi-collapse-triangle {
+    background-position: -315px -356px;
+  }
+  .mi-dropdown-triangle {
+    background-position: -368px -359px;
+  }
+  .mi-folder {
+    background-position: -656px -312px;
+  }
+  .mi-drag-grid {
+    background-position: -416px -360px;
+  }
+  .mi-chevron-up--primary-small {
+    background-position: -516px -358px;
+  }
+  .mi-chevron-down--primary-small {
+    background-position: -466px -358px;
+  }
+  .mi-download {
+    background-position: -705px -358px;
+  }
+  .mi-excel {
+    background-position: -705px -200px;
+  }
+  .mi-close--medium {
+    background-position: -1176px -360px;
+  }
+  .mi-sidebar-dashboard {
+    background-position: -30px -1628px;
+  }
+  .mi-sidebar-cash {
+    background-position: -73px -1628px;
+  }
+  .mi-sidebar-bank {
+    background-position: -117px -1628px;
+  }
+  .mi-sidebar-pu {
+    background-position: -161px -1628px;
+  }
+  .mi-sidebar-sale {
+    background-position: -204px -1628px;
+  }
+  .mi-sidebar-invoice {
+    background-position: -249px -1628px;
+  }
+  .mi-sidebar-stock {
+    background-position: -291px -1628px;
+  }
+  .mi-sidebar-tools {
+    background-position: -336px -1628px;
+  }
+  .mi-sidebar-fixed-assets {
+    background-position: -378px -1630px;
+  }
+  .mi-sidebar-salary {
+    background-position: -467px -1659px;
+  }
+  .mi-sidebar-price {
+    background-position: -467px -1628px;
+  }
+  .mi-sidebar-general {
+    background-position: -510px -1628px;
+  }
+  .mi-sidebar-tax {
+    background-position: -423px -1630px;
+  }
+  .mi-sidebar-report {
+    background-position: -547px -1628px;
+  }
+  .mi-sidebar-three-stripes {
+    background-position: -312px -32px;
+  }
+  .mi-pencil--blue {
+    background-position: -752px -408px;
+  }
+  .mi-sidebar-finance {
+    background-position: -204px -1664px;
+  }
+  .mi-sidebar-budget {
+    background-position: -378px -1659px;
+  }
+  .mi-check-succes {
+    background-position: -1500px -312px;
+  }
+  .mi-check-failed {
+    background-position: -1696px -312px;
+  }
+  .mi-collapse-shadow {
+    background-position: -1485px -84px;
+  }
+  .mi-detail-form {
+    background-position: -32px -456px;
+  }
+  .mi-exclamation–success-32 {
+    background-position: -96px -880px;
+  }
+  .mi-exclamation–error-32 {
+    background-position: -32px -880px;
+  }
+  .mi-notifications–success {
+    background-position: -95px -962px;
+  }
+  .mi-notifications–error {
+    background-position: -32px -962px;
+  }
+  .mi-image {
+    background-position: -220px -308px;
+  }
+  .mi-image-preview {
+    background-position: -25px -448px;
+  }
+  .mi-exclamation-warning-48 {
+    background-position: -592px -456px;
+  }
+  .mi-exclamation-question-48 {
+    background-position: -826px -456px;
+  }
+  .mi-exclamation-success-48 {
+    background-position: -984px -456px;
+  }
+  .mi-exclamation-error-48 {
+    background-position: -746px -456px;
+  }
+  .mi-exclamation-error-48-2 {
+    background-position: -24px -954px;
+  }
+  .mi-exclamation-info-48 {
+    background-position: -666px -456px;
+  }
+  .mi-option-general {
+    background-position: -31px -1140px;
+  }
+  .mi-option-inventory-item {
+    background-position: -128px -1140px;
+  }
+  .mi-option-report {
+    background-position: -223px -1140px;
+  }
+  .mi-option-format-number {
+    background-position: -320px -1140px;
+  }
+  .mi-option-rule-numbering {
+    background-position: -415px -1140px;
+  }
+  .mi-option-hiden-bussiness {
+    background-position: -511px -1140px;
+  }
+  .mi-option-custom-field {
+    background-position: -465px -1324px;
+  }
+  .mi-option-sortUp-opacity-50 {
+    background-position: -1510px -1253px;
+    pointer-events: none;
+  }
+  .mi-option-sortUp-opacity-100 {
+    background-position: -1612px -1252px;
+  }
+  .mi-option-sortDown-opacity-50 {
+    background-position: -1510px -1336px;
+    pointer-events: none;
+  }
+  .mi-option-sortDown-opacity-100 {
+    background-position: -1612px -1336px;
+  }
+  .mi-minimum_stock-80 {
+    background-position: -27px -1311px;
+  }
+  .mi-over_quantity-80 {
+    background-position: -139px -1307px;
+  }
+  .mi-inventory-item-category {
+    background-position: -31px -631px;
+  }
+  .mi-inventory-item-category-detail {
+    background-position: -33px -748px;
+  }
+  .mi-cloth-category {
+    background-position: -148px -631px;
+  }
+  .mi-cloth-category-detail {
+    background-position: -101px -748px;
+  }
+  .mi-su-category-detail {
+    background-position: -679px -749px;
+  }
+  .mi-su-category {
+    background-position: -1078px -631px;
+  }
+  .mi-construct-category {
+    background-position: -264px -631px;
+  }
+  .mi-construct-category-detail {
+    background-position: -170px -748px;
+  }
+  .mi-matarial-category {
+    background-position: -960px -631px;
+  }
+  .mi-matarial-category-detail {
+    background-position: -597px -748px;
+  }
+  .mi-contract,
+  .mi-project-work {
+    background-position: -612px -631px;
+  }
+  .mi-continuous-production {
+    background-position: -495px -631px;
+  }
+  .mi-reconcile-single {
+    background-position: -1734px -402px;
+  }
+  .mi-order {
+    background-position: -727px -631px;
+  }
+  .mi-user-avatar {
+    background-position: -352px -894px;
+  }
+  .mi-avatar {
+    background-position: -608px -1140px;
+  }
+  .mi-tick-check {
+    background-position: -848px -312px;
+  }
+  .mi-check {
+    background-position: -897px -312px;
+  }
+  .mi-chat-help {
+    background-position: -417px -894px;
+  }
+  .mi-arrow-left--nomal {
+    background-position: -223px -358px;
+  }
+  .mi-icon-start-use {
+    background-position: -988px -308px;
+  }
+  .mi-arrow-right--black {
+    background-position: -320px -360px;
+  }
+  .mi-arrow-up--black {
+    background-position: -560px -359px;
+  }
+  .mi-arrow-up--blue {
+    background-position: -896px -359px;
+  }
+  .mi-arrow-up--white {
+    background-position: -848px -359px;
+  }
+  .mi-arrow-up--gray {
+    background-position: -944px -360px;
+  }
+  .mi-arrow-down-solid--grey {
+    background-position: -1934px -608px;
+  }
+  .mi-next {
+    background-position: -2014px -606px;
+  }
+  .mi-back {
+    background-position: -1972px -606px;
+  }
+  .mi-zoom-out {
+    background-position: -1883px -645px;
+  }
+  .mi-zoom-in {
+    background-position: -1932px -645px;
+  }
+  .mi-pin-left {
+    background-position: -2014px -560px;
+  }
+  .mi-pin-right {
+    background-position: -2055px -560px;
+  }
+  .mi-unpin {
+    background-position: -1887px -607px;
+  }
+  .mi-mark {
+    background-position: -1934px -560px;
+  }
+  .mi-unmark {
+    background-position: -1972px -560px;
+  }
+  .mi-arrow-up--print-viewer-header {
+    background-position: -944px -360px;
+  }
+  .mi-arrow-up--footer {
+    background-position: -847px -360px;
+  }
+  .mi-exclamation–success {
+    background-position: -704px -144px;
+  }
+  .mi-percent {
+    background-position: -1038.5px -311.5px;
+  }
+  .mi-delete {
+    background-position: -464px -312px;
+  }
+  .mi-3dot-straight {
+    background-position: -1028px -356px;
+  }
+  .mi-3dot-straight-20-with-border {
+    background-position: -1077px -403px;
+  }
+  .mi-company-logo-blank {
+    background-position: -271px -455px;
+  }
+  .mi-process-customer {
+    background-position: -872px -200px;
+  }
+  .mi-process-organization {
+    background-position: -928px -255px;
+  }
+  .mi-process-fa-asset-type {
+    background-position: -984px -255px;
+  }
+  .mi-process-supply-icon {
+    background-position: -1040px -200px;
+  }
+  .mi-process-provider {
+    background-position: -928px -200px;
+  }
+  .mi-process-employee {
+    background-position: -984px -200px;
+  }
+  .mi-process-tool {
+    background-position: -1040px -200px;
+  }
+  .mi-calculate {
+    background-position: -1376px -256px;
+  }
+  .mi-bank-card {
+    background-position: -1096px -200px;
+  }
+  .mi-process-inventory-item {
+    background-position: -1152px -200px;
+  }
+  .mi-process-term-of-service {
+    background-position: -1208px -200px;
+  }
+  .mi-process-stock {
+    background-position: -1264px -200px;
+  }
+  .mi-process-unit-price {
+    background-position: -872px -256px;
+  }
+  .mi-process-account-system {
+    background-position: -1376px -200px;
+  }
+  .mi-process-summary-code {
+    background-position: -1432px -200px;
+  }
+  .mi-process-expensive-item {
+    background-position: -1264px -256px;
+  }
+  .mi-checkbox-active {
+    background-position: -1224px -360px;
+  }
+  .mi-checkbox-disabled {
+    background-position: -1272px -360px;
+  }
+  .mi-arrow-item {
+    background-position: -944px -358px;
+  }
+  .mi-refresh-blue {
+    background-position: -1328px -312px;
+  }
+  .mi-cricle-play {
+    background-position: -992px -312px;
+  }
+  .mi-question-mark-16 {
+    background-position: -704px -312px;
+  }
+  .mi-add-btn-cricle {
+    background-position: -700px -1148px;
+  }
+  .mi-agree-btn-cricle {
+    background-position: -876px -1148px;
+  }
+  .mi-edit-btn-cricle {
+    background-position: -964px -1148px;
+  }
+  .mi-close-btn-cricle {
+    background-position: -788px -1148px;
+  }
+  .mi-icon-close {
+    background-position: -1432px -144px;
+  }
+  .mi-icon-setting {
+    background-position: -1276px -307px;
+  }
+  .mi-dashboard-type-1 {
+    background-position: -1088px -1136px;
+  }
+  .mi-dashboard-type-2 {
+    background-position: -1184px -1136px;
+  }
+  .mi-dashboard-type-3 {
+    background-position: -1280px -1136px;
+  }
+  .mi-dashboard-type-4 {
+    background-position: -1376px -1136px;
+  }
+  .mi-dashboard-type-5 {
+    background-position: -1088px -1241px;
+  }
+  .mi-dashboard-type-6 {
+    background-position: -1184px -1241px;
+  }
+  .mi-dashboard-type-7 {
+    background-position: -1280px -1241px;
+  }
+  .mi-dashboard-type-8 {
+    background-position: -1376px -1241px;
+  }
+  .mi-dropdown-menu-arrow {
+    background-position: -1546px -202px;
+  }
+  .mi-group-row {
+    background-position: -1713px -87px;
+  }
+  .mi-group-row:hover {
+    background-position: -1713px -143px;
+  }
+  .mi-filter {
+    background-position: -1600px -88px;
+  }
+  .mi-filter:hover {
+    background-position: -1600px -144px;
+  }
+  .mi-add-notes {
+    background-position: -1656px -88px;
+  }
+  .mi-add-notes:hover {
+    background-position: -1656px -144px;
+  }
+  .mi-enable-database {
+    background-position: -1434px -310px;
+  }
+  .mi-disable-database {
+    background-position: -1434px -359px;
+  }
+  .mi-expand {
+    background-position: -1545px -88px;
+  }
+  .mi-expand:hover {
+    background-position: -1545px -144px;
+  }
+  .mi-collapse {
+    background-position: -1489px -88px;
+  }
+  .mi-collapse:hover {
+    background-position: -1489px -144px;
+  }
+  .mi-permission-state-1 {
+    background-position: -1220px -357px;
+  }
+  .mi-permission-state-2 {
+    background-position: -124px -403px;
+  }
+  .mi-permission-state-3 {
+    background-position: -171px -402px;
+  }
+  .mi-permission-back-to-top {
+    background-position: -220px -402px;
+  }
+  .mi-warning-status {
+    background-position: -1548px -307px;
+  }
+  .mi-warning-status-active {
+    background-position: -1088px -312px;
+  }
+  .mi-help-status-active {
+    background-position: -1612px -360px;
+  }
+  .mi-help-status-inactive {
+    background-position: -1600px -312px;
+  }
+  .mi-help-check-status-inactive {
+    background-position: -1379px -311px;
+  }
+  .mi-checked-no-inactive {
+    background-position: -1223px -360px;
+  }
+  .mi-re-check {
+    background-position: -1327px -311px;
+  }
+  .mi-has-inactive-bussiness {
+    background-position: -1551px -308px;
+  }
+  .mi-opening-account-entry {
+    background-position: -23px -1420px;
+  }
+  .mi-opening-bank-account-entry {
+    background-position: -103px -1420px;
+  }
+  .mi-opening-customer-entry {
+    background-position: -183px -1420px;
+  }
+  .mi-opening-suplier-entry {
+    background-position: -263px -1420px;
+  }
+  .mi-opening-employee-entry {
+    background-position: -343px -1420px;
+  }
+  .mi-opening-inventory-entry {
+    background-position: -23px -1497px;
+  }
+  .mi-opening-increment-entry {
+    background-position: -103px -1497px;
+  }
+  .mi-opening-asset-entry {
+    background-position: -183px -1497px;
+  }
+  .mi-opening-jc-entry {
+    background-position: -263px -1497px;
+  }
+  .mi-opening-revenue-entry {
+    background-position: -420px -1497px;
+  }
+  .mi-opening-prepaid-expenses {
+    background-position: -343px -1497px;
+  }
+  .mi-opening-redirect-to {
+    background-position: -1644px -308px;
+  }
+  .mi-pin-icon {
+    background-position: -1648px -358px;
+  }
+  .mi-unpin-icon {
+    background-position: -1694px -358px;
+  }
+  .mi-dropdown-grey-triangle {
+    background-position: -1752px -312px;
+  }
+  .mi-js-process-contract {
+    background-position: -1320px -200px;
+  }
+  .mi-process-setting-email-invoice {
+    background-position: -1432px -255px;
+  }
+  .mi-process-setting-sms-invoice {
+    background-position: -1488px -255px;
+  }
+  .mi-process-setting-sign-invoice {
+    background-position: -652px -403px;
+  }
+  .mi-process-history-publish-invoice {
+    background-position: -2008px -200px;
+  }
+  .mi-logo-me-invoice {
+    background-position: -1232px -858px;
+  }
+  .mi-background-me-invoice-flower {
+    background-position: -1225px -900px;
+  }
+  .mi-connected-sme-me-invoice {
+    background-position: -1232px -1013px;
+  }
+  .mi-circle-number1 {
+    background-position: -32px -830px;
+    cursor: default;
+  }
+  .mi-circle-number2 {
+    background-position: -96px -830px;
+    cursor: default;
+  }
+  .mi-circle-number3 {
+    background-position: -160px -830px;
+    cursor: default;
+  }
+  .mi-circle-number4 {
+    background-position: -224px -830px;
+    cursor: default;
+  }
+  .mi-circle-number1--active {
+    background-position: -32px -894px;
+    cursor: default;
+  }
+  .mi-circle-number2--active {
+    background-position: -96px -894px;
+    cursor: default;
+  }
+  .mi-circle-number3--active {
+    background-position: -160px -894px;
+    cursor: default;
+  }
+  .mi-circle-number4--active {
+    background-position: -224px -894px;
+    cursor: default;
+  }
+  .mi-icon-ip-template {
+    background-position: -1230px -630px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-make-decision {
+    background-position: -1381px -630px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-publish {
+    background-position: -1521px -630px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-document-tax {
+    background-position: -1667px -630px;
+    margin: 0 auto;
+  }
+  .mi-icon-ip-template--active {
+    background-position: -1230px -755px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-make-decision--active {
+    background-position: -1381px -755px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-publish--active {
+    background-position: -1521px -755px;
+    margin: 16px auto;
+  }
+  .mi-icon-ip-document-tax--active {
+    background-position: -1667px -755px;
+    margin: 0 auto;
+  }
+  .mi-icon-help {
+    background-position: -704px -311px;
+  }
+  .mi-icon-play-film {
+    background-position: -751px -311px;
+  }
+  .mi-icon-sigma {
+    background-position: -320px -408px;
+  }
+  .mi-arrow-dropdown-chart {
+    background-position: -464px -409px;
+  }
+  .mi-setting__list-chart {
+    background-position: -512px -312px;
+  }
+  .mi-setting__list-chart:hover,
+  .mi-setting__with-text {
+    background-position: -1280px -312px;
+  }
+  .mi-help__in--hover {
+    background-position: -1600px -312px;
+  }
+  .mi_print_invoice {
+    background-position: -1600px -200px;
+  }
+  .mi-jc-process-project-work {
+    background-position: -1320px -255px;
+  }
+  .mi-jc-process-project-work-category {
+    background-position: -1208px -255px;
+  }
+  .mi-arrow--white {
+    background-position: -609px -408px;
+  }
+  .mi-arrow--gray {
+    background-position: -465px -408px;
+  }
+  .mi-arrow-left--white {
+    background-position: -32px -356px;
+  }
+  .mi-arrow-left--gray {
+    background-position: -34px -406px;
+  }
+  .mi-jc-process-job {
+    background-position: -1152px -255px;
+  }
+  .mi-tour-guide-icon {
+    background-position: -703px -535px;
+  }
+  .mi-quantity-user-over {
+    background-position: -957px -1413px;
+  }
+  .mi-quantity-user-over-warning {
+    background-position: -829.5px -1414px;
+  }
+  .mi-close--small--white {
+    background-position: -1319px -360px;
+  }
+  .mi-header-option {
+    background-position: -1687px -564px;
+  }
+  .mi-jc-process-sa-order {
+    background-position: -1152px -255px;
+  }
+  .mi-database-name--active,
+  .mi-database-name--inactive {
+    background-position: -1432px -309px;
+  }
+  .mi-select--active {
+    background-position: -845px -309px;
+  }
+  .mi-select-circle--active {
+    background-position: -1498px -309px;
+  }
+  .mi-learn-more-white {
+    background-position: -1553px -360px;
+  }
+  .mi-old-amis-logo-65 {
+    background-position: -1592px -876px;
+  }
+  .mi-new-amis-logo-65 {
+    background-position: -1741px -876px;
+  }
+  .mi-arrow-convert {
+    background-position: -1491px -984px;
+  }
+  .mi-convert-progress {
+    background-position: -1592px -986px;
+  }
+  .mi-help-serial {
+    background-position: -1593px -308px;
+  }
+  .mi-icon-resync {
+    background-position: -1324px -308px;
+  }
+  .mi-icon-expand {
+    background-position: -1792px -468px;
+  }
+  .mi-icon-set-color {
+    background-position: -1950px -310px;
+  }
+  .mi-go-to-link {
+    background-position: -2055px -523px;
+  }
+  .mi-help-resolve {
+    background-position: -1430px -468px !important;
+  }
+  .mi-warning-status-reconcile {
+    background-position: -1932px -202px;
+  }
+  .mi-export__word {
+    background-position: -1073px -467px;
+  }
+  .mi-export__pdf {
+    background-position: -1503px -558px;
+  }
+  .mi-raise-green {
+    background-position: -1849px -408px;
+  }
+  .mi-un_raise-red {
+    background-position: -1919px -408px;
+  }
+  .mi-raise-red {
+    background-position: -1884px -408px;
+  }
+  .mi-un_raise-green {
+    background-position: -1955px -408px;
+  }
+  .mi-icon-summary-active {
+    background-position: -1910px -310px;
+  }
+  .mi-icon-summary-disable {
+    background-position: -1876px -310px;
+  }
+  .mi-icon-formula {
+    background-position: -1566px -517px;
+  }
+  .mi-icon-vertical-middle {
+    background-position: -1840px -351px;
+  }
+  .mi-icon-vertical-top {
+    background-position: -1877px -351px;
+  }
+  .mi-icon-vertical-bottom {
+    background-position: -1912px -351px;
+  }
+  .mi-pay-tax-regis-service {
+    background-position: -1460px -1424px;
+  }
+  .mi-pay-tax-regis-bank {
+    background-position: -1604px -1424px;
+  }
+  .mi-pay-tax-action {
+    background-position: -1742px -1424px;
+  }
+  .mi-tct-notify-disable {
+    background-position: -423px -1629px;
+  }
+  .mi-tct-notify-enable {
+    background-position: -1716px -202px;
+  }
+  .mi-bank-notify-disable {
+    background-position: -117px -1629px;
+  }
+  .mi-bank-notify-enable {
+    background-position: -1771px -202px;
+  }
+  .mi-show-password {
+    background-position: -932px -92px;
+  }
+  .mi-hide-password {
+    background-position: -988px -92px;
+  }
+  .mi-cloud-download {
+    background-position: -1843px -559px;
+  }
+  .mi-image-file {
+    background-position: -1887px -559px;
+  }
+  .mi-progress {
+    background-position: -1785px -992px;
+  }
+  .btn-close-tab {
+    background-position: -80px -312px;
+  }
+  .icon-btn-tab {
+    background-position: -32px -312px;
+  }
+  .mi-mtax-logo-36 {
+    background-position: -1998px -1341px;
+  }
+  .mi-warning-tax {
+    background-position: -538px -145px;
+  }
+  .mi-icon-close-tax {
+    background-position: -2091px -472px;
+  }
+  .mi-icon-facebook {
+    background-position: -1928px -758px;
+  }
+  .mi-icon-zoom {
+    background-position: -1969px -758px;
+  }
+  .mi-icon-youtube {
+    background-position: -2011px -758px;
+  }
+  .mi-icon-forum {
+    background-position: -2094px -758px;
+  }
+  .mi-icon-operator {
+    background-position: -2053px -758px;
+  }
+  .mi-icon-reload-small {
+    background-position: -1887px -833px;
+  }
+  .mi-icon-reload-small:hover {
+    background-position: -1930px -833px;
+  }
+  .mi-icon-facebook-blue {
+    background-position: -1928px -721px;
+  }
+  .mi-icon-zoom-blue {
+    background-position: -1969px -721px;
+  }
+  .mi-icon-youtube-blue {
+    background-position: -2014px -721px;
+  }
+  .mi-icon-forum-blue {
+    background-position: -2094px -721px;
+  }
+  .mi-icon-operator-blue {
+    background-position: -2053px -721px;
+  }
+  .mi-icon-active-link {
+    background-position: -2056px -522px;
+  }
+
+  .mi-icon-close-midium {
+    background-position: -1176px -360px;
+  }
+
+  .mi-help-small {
+    background-position: -1600px -312px;
+  }
+
+ 

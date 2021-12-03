@@ -1,0 +1,24 @@
+.m-input {
+ position: relative;
+ display: inline-block;
+}
+.m-input-text {
+  height: 30px;
+  border-radius: 2px;
+  border: 1px solid #babec5;
+  padding: 0 35px 0 10px;
+  min-width: 220px;
+}
+.m-input-icon {
+  position: absolute;
+  right: 12px;
+  top: 7px;
+  bottom: 7px;
+}
+.m-input-text:focus {
+  border: 1px solid #2ca01c;
+}
+.m-input-text::placeholder {
+  font-style: italic;
+  color: #babec5;
+}
