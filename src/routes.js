@@ -8,7 +8,8 @@ Vue.use(VueRouter)
 export const router = new VueRouter({
     mode: 'history',
     routes: [
-        {path: '/', component: Employee},
+        {path: '/', redirect: '/employee'},
+        {path: '/employee', component: Employee},
         {path: '/customer', component: Customer},
     ]
 })

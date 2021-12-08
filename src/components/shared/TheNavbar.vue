@@ -12,18 +12,18 @@
 
             <!-- Menu -->
             <div class="menu-item-list">
-                <a href="#" class="menu-item">
+                <router-link to="/employee" class="menu-item">
                     <div class="menu-item-icon">
                         <div class="mi mi-24 mi-sidebar-dashboard"></div>
                     </div>
                     <div class="menu-item-title">Tổng quan</div>
-                </a>
-                <a href="#" class="menu-item">
+                </router-link>
+                <router-link to="/customer" class="menu-item">
                     <div class="menu-item-icon">
                         <div class="mi mi-24 mi-sidebar-cash"></div>
                     </div>
                     <div class="menu-item-title">Tiền mặt</div>
-                </a>
+                </router-link>
                 <a href="#" class="menu-item">
                     <div class="menu-item-icon">
                         <div class="mi mi-24 mi-sidebar-bank"></div>
