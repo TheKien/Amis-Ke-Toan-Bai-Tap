@@ -117,6 +117,6 @@
 <script>
 </script>
 
-<style>
+<style scoped>
     @import url("../../assets/css/common/navbar.css");
 </style>

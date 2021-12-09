@@ -5,14 +5,15 @@
 @import url("component/checkbox.css");
 @import url("component/modal.css");
 @import url("component/form.css");
-/* @import url("component/combobox.css");
+@import url("component/checkbox.css");
+@import url("component/icon.css");
 
+/* @import url("component/combobox.css");
 @import url("component/nagivation.css");
 @import url("component/dropdown.css");
 @import url("component/chip-status.css");
 @import url("component/toast.css");
  */
-@import url("component/icon.css");
 body {
   font-family: NotoSans;
   font-size: 13px;

@@ -23,6 +23,6 @@
 </div>
 <!--=========== END HEADER ===========-->
 </template>
-<style>
+<style scoped>
     @import url("../../assets/css/common/header.css");
 </style>

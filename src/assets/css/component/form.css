@@ -4,13 +4,13 @@
 .m-form-group {
     width: 100%;
 }
-.m-lable{
+.m-form-lable{
     display: block;
     padding-bottom: 3px;
     font-weight: 700;
     font-size: 12px;
 }
-.m-lable span{
+.m-form-lable span{
     color:red;
 }
 .m-form-input{
@@ -25,25 +25,4 @@
 }
 .m-form-input:focus {
     border-color: #2ca01c;
-}
-.m-pr-6 {
-    padding-right: 6px;
-}
-.m-pr-26 {
-    padding-right: 26px;
-}
-.m-pr-20 {
-    padding-right: 20px;
-}
-.m-mr-10 {
-    margin-right: 10px;
-}
-.m-pl-10 {
-    padding-left: 10px;
-}
-.m-pl-10 {
-    padding-left: 10px;
-}
-.m-pb-12 {
-    padding-bottom: 12px;
 }

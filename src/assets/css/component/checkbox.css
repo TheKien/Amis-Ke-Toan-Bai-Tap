@@ -1,16 +1,17 @@
-input.m-checkbox{
+input[type=checkbox].m-checkbox{
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
     border: 1px solid #afafaf;
     border-radius: 2px;
+    transform: rotate(-90deg);
 }
 
-input.m-checkbox:checked,
-input.m-checkbox:active,
-input.m-checkbox:checked:active{
+input[type=checkbox].m-checkbox:checked {
     cursor: pointer;
     background: url(../../content/img/Sprites.64af8f61.svg) no-repeat;
     background-position: -1225px -361px;
     border: 1px solid #2CA01C;
+    transform: rotate(0deg);
+    transition: transform .15s linear;
 }

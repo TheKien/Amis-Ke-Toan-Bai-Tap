@@ -1,6 +1,7 @@
 /*-- HEADER --*/
 .header {
-  
+  float: left;
+  width: calc(100vw - 178px);
   height: 48px;
   display: flex;
   align-items: center;
