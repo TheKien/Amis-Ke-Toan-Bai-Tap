@@ -1,9 +1,8 @@
 /*-- NAVBAR --*/
 .navbar {
-  width: 178px;
+  width: 180px;
   background-color: #38393d;
   border-right: 1px #bbbbbb solid;
-  float: left;
 }
 
 /* Logo */
@@ -48,7 +47,7 @@
   display: flex;
   align-items: center;
   padding: 0 14px 0 8px;
-  border: 6px solid transparent;
+  border-left: 6px solid transparent;
 }
 .menu-item:hover {
   background: rgb(235, 237, 240, 0.2);

@@ -26,3 +26,6 @@
 .m-form-input:focus {
     border-color: #2ca01c;
 }
+.m-form-error {
+    border: 1px solid red !important;
+}

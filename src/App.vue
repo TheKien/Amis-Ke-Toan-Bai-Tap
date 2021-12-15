@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
-    <TheNavbar />
-    <TheHeader />
-    <TheContent />
+  <div id="app" class="m-flex">
+      <TheNavbar />
+      <div class="content-area">
+        <TheHeader />
+        <TheContent />
+      </div>
   </div>
 </template>
 
@@ -22,4 +24,7 @@ export default {
 
 <style scoped>
 @import url("./assets/css/main.css");
+.content-area {
+  width: calc(100vw - 179px);
+}
 </style>

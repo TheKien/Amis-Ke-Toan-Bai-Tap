@@ -1,7 +1,7 @@
 .m-btn {
   border-radius: 5px;
   height: 36px;
-  min-width: 100px;
+  min-width: 65px;
   color: #ffffff;
   padding: 0 24px;
   text-align: center;
@@ -44,30 +44,29 @@
 
 .m-btn.m-second-btn {
   min-width: 40px;
-  background-color: #FFF;
+  background-color: #fff;
   color: #000000;
   border: 1px #e9ebee solid;
 }
 
 .m-second-btn:hover {
-  background-color: #E9EBEE;
+  background-color: #e9ebee;
 }
 
-.m-btn-icon-2 button{
+.m-btn-icon-2 button {
   border-radius: 0;
   float: left;
 }
 
-.m-btn-danger{
-  background-color: #F65454;
+.m-btn-danger {
+  background-color: #f65454;
 }
-.m-btn-secondary{
-  background-color: #E9EBEE;
+.m-btn-secondary {
+  background-color: #e9ebee;
   color: #000000;
 }
-.m-btn-secondary:hover{
-  background-color: #BBBBBB;
-
+.m-btn-secondary:hover {
+  background-color: #bbbbbb;
 }
 
 .m-btn:active,
@@ -76,11 +75,18 @@
   background-color: #01b075;
   color: #ffffff;
 }
-.m-btn-secondary:active{
-  background-color: #E9EBEE;
+.m-btn-secondary:active {
+  background-color: #e9ebee;
   color: #000000;
 }
-.m-btn-danger:hover{
-  background-color: #FFEBEB;
+.m-btn-danger:hover {
+  background-color: #ffebeb;
   color: #000000;
+}
+
+.m-btn-edit {
+  cursor: pointer;
+  color: #0075c0;
+  font-weight: 700;
+  padding: 6px 10px 6px 16px;
 }

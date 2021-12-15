@@ -1,0 +1,24 @@
+.c-sliding-pagination__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+.c-sliding-pagination__list-element {
+  font-weight: 700;
+  padding: 0 6.5px;
+}
+.c-sliding-pagination__list-element.c-sliding-pagination__list-element--active {
+  border: 1px solid #e0e0e0;
+
+}
+.c-sliding-pagination__page {
+  color: #000;
+  font-weight: 100;
+}
+.c-sliding-pagination__page.c-sliding-pagination__page--current {
+  font-weight: 700;
+}
+.c-sliding-pagination__list-element--disabled .c-sliding-pagination__page{
+  cursor: default!important;
+    color: #9e9e9e;
+}

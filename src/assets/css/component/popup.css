@@ -1,0 +1,40 @@
+.m-popup-box {
+    display: none;
+}
+.m-popup {
+    position: absolute;
+    background-color: #ffffff;
+    z-index: 5;
+    width: 444px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 2px;
+    padding: 32px;
+}
+
+.m-popup-content .m-messenger {
+    width: 316px;
+    height: 48px;
+    padding: 12px 0 0 16px;
+    margin-bottom: 32px;
+}
+
+.m-popup-content .m-mess-line {
+    height: 1px;
+    background: #b8bcc3;
+    margin-bottom: 20px;
+}
+
+.m-popup-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 4;
+  }
+.m-popup-show {
+    display: block;
+}

@@ -1,0 +1,43 @@
+.m-radio-region{
+    height: 30px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+input.m-radio{
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #afafaf;
+    border-radius: 50%;
+}
+
+input.m-radio:checked,
+input.m-radio:active,
+input.m-radio:checked:active{
+    cursor: pointer;
+    background: url(../../content/img/Sprites.64af8f61.svg) no-repeat;
+    background-position: -848px -312px;
+    border: 1px solid #2CA01C;
+}
+.m-radio-label{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.m-radio-label>label{
+    white-space: nowrap;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #111;
+}
+
+/* .m-radio-input:checked{
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 4px;
+    left: 4px;
+    border-radius: 50%;
+    background: #2ca01c; */
