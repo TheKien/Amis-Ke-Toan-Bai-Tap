@@ -272,6 +272,7 @@
     <div class="modal-background"></div>
   </div>
 </template>
+
 <script>
 import _api from "../../../services/ApiService.js";
 import { required } from "vuelidate/lib/validators";
@@ -280,9 +281,17 @@ import { eventBus } from "../../../main";
 export default {
   created() {
     this.getDeparment();
+    /**
+     * Hide modal global
+     * Author: TTKien(15/12/2021)
+     */
     eventBus.$on("onClickClose", () => {
       this.onClickClose();
     });
+    /**
+     * Button submit global
+     * Author: TTKien(15/12/2021)
+     */
     eventBus.$on("onClickSubmit", (modeBtn) => {
       this.onClickSubmit(modeBtn);
     });
@@ -353,7 +362,7 @@ export default {
           return;
         }
       } else {
-        // create employee
+        // CREATE EMPLOYEE
         if (this.isCreate) {
           _api
             .create(this.apiRouter, this.employee)
@@ -361,12 +370,12 @@ export default {
               // Reset data
               this.$emit("getAllEmployee");
               this.submitted = false;
-              // nếu chọn nút cất
+              // Select button 'cất '
               if (modeBtn == 0) {
                 // Hide modal
                 this.onClickClose();
               } else {
-                // nếu chọn nút cất và thêm
+                // Select button 'cất và thêm'
                 // Reset Form
                 this.$emit("resetFormData");
                 this.$emit("onClickAddEmployee");
@@ -391,20 +400,21 @@ export default {
               }
             });
         } else {
-          // Cập nhật
+          // UPDATE EMPLOYEE
           _api
             .update(this.apiRouter, this.employeeId, this.employee)
             .then(() => {
               // Reset data
               this.$emit("getAllEmployee");
-              // nếu chọn nút cất
+              // Select button 'cất'
               if (modeBtn == 0) {
                 // Hide modal
                 this.onClickClose();
               } else {
-                // nếu chọn nút cất và thêm
+                // Select button 'cất và thêm'
                 // Reset Form
                 this.$emit("resetFormData");
+                // get new EmployeeCode
                 this.$emit("onClickAddEmployee");
                 this.submitted = false;
                 setTimeout(() => {
@@ -433,7 +443,9 @@ export default {
      *  Author: TTKien(6/12/2021)
      */
     async onClickClose() {
+      // Call function to parent component Reset form
       await this.$emit("resetFormData");
+      // Call function to parent component hide modal
       this.$emit("hideEmployeeModal");
       this.changeForm = 0;
       this.submitted = false;

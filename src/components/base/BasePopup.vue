@@ -81,6 +81,7 @@ export default {
      */
     onClickNot() {
       this.$emit("onClickClosePopup");
+      // Call funciton close modal from global
       eventBus.$emit("onClickClose");
     },
     /**
@@ -89,6 +90,7 @@ export default {
      */
     onClickYes() {
       this.$emit("onClickClosePopup");
+      // Call funciton submit form modal from global
       eventBus.$emit("onClickSubmit", 0);
     },
   },
