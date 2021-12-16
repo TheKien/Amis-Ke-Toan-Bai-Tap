@@ -120,7 +120,7 @@
         <div class="option"></div>
         <!-- Combobox change page size -->
         <div class="page-size">
-          <select name="" id="" v-model="pageSize">
+          <select name="" id="" v-model="pageSize" style="padding: 5px 10px ">
             <option value="10">10 bản ghi trên trang</option>
             <option value="20">20 bản ghi trên trang</option>
             <option value="30">30 bản ghi trên trang</option>
@@ -135,8 +135,8 @@
             :total="totalPage"
             @page-change="pageChange"
             :slidingEndingSize="1"
-            :slidingWindowSize="3"
-            :nonSlidingSize="3"
+            :slidingWindowSize="2"
+            :nonSlidingSize="2"
           ></sliding-pagination>
         </div>
       </div>
