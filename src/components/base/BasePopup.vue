@@ -3,7 +3,9 @@
     <div class="m-popup">
       <div class="m-popup-content">
         <div class="m-flex">
-          <div :class="icon"></div>
+          <div class="mi mi-48 mi-exclamation-warning-48" v-if="popup.Status == 'Warning'"></div>
+          <div class="mi mi-48 mi-exclamation-error-48-2" v-if="popup.Status == 'Danger'"></div>
+          <div class="mi mi-48 mi-exclamation-question-48" v-if="popup.Status == 'Question'"></div>
           <!-- Messenger -->
           <div class="m-messenger">{{ popup.Title }}</div>
         </div>
@@ -28,16 +30,14 @@
         </div>
         <div v-if="popup.Status == 'Question'" class="m-flex-between">
           <!-- Button close -->
-          <button class="m-btn m-btn-gray" @click="onClickClose()">
-            Huỷ
-          </button>
+          <button class="m-btn m-btn-gray" @click="onClickClose()">Huỷ</button>
           <div class="m-flex">
             <!-- Button close -->
             <button class="m-btn m-btn-gray m-mr-10" @click="onClickNot()">
               Không
             </button>
             <!-- Button comfirm -->
-            <button class="m-btn m-btn-success" @click="onClickComfirm()">
+            <button class="m-btn m-btn-success" @click="onClickYes()">
               Có
             </button>
           </div>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { eventBus } from "../../main";
 export default {
   data() {
     return {
@@ -80,28 +81,15 @@ export default {
      */
     onClickNot() {
       this.$emit("onClickClosePopup");
-      this.$emit("hideEmployeeModal");
-    }
-  },
-  watch: {
+      eventBus.$emit("onClickClose");
+    },
     /**
-     * Change status of popup
+     * If click YES, close the popup question
      * Author: TTKien (12/12/2021)
      */
-    isShowPopup() {
-      switch (this.popup.Status) {
-        case "Warning":
-          this.icon = "mi mi-48 mi-exclamation-warning-48";
-          break;
-        case "Danger":
-          this.icon = "mi mi-48 mi-exclamation-error-48-2";
-          break;
-        case "Question":
-          this.icon = "mi mi-48 mi-exclamation-question-48";
-          break;
-        default:
-          break;
-      }
+    onClickYes() {
+      this.$emit("onClickClosePopup");
+      eventBus.$emit("onClickSubmit", 0);
     },
   },
 };

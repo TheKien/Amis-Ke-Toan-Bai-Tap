@@ -275,10 +275,17 @@
 <script>
 import _api from "../../../services/ApiService.js";
 import { required } from "vuelidate/lib/validators";
+import { eventBus } from "../../../main";
 
 export default {
   created() {
     this.getDeparment();
+    eventBus.$on("onClickClose", () => {
+      this.onClickClose();
+    });
+    eventBus.$on("onClickSubmit", (modeBtn) => {
+      this.onClickSubmit(modeBtn);
+    });
   },
 
   props: ["isShowModal", "isCreate", "employee", "employeeId", "apiRouter"],
@@ -326,7 +333,7 @@ export default {
      * Click button save and exit
      * Author: TTKien(6/12/2021)
      */
-     onClickSubmit(modeBtn) {
+    onClickSubmit(modeBtn) {
       let _this = this;
       // On validate
       this.submitted = true;
@@ -354,11 +361,12 @@ export default {
               // Reset data
               this.$emit("getAllEmployee");
               this.submitted = false;
-               // nếu chọn nút cất
+              // nếu chọn nút cất
               if (modeBtn == 0) {
                 // Hide modal
                 this.onClickClose();
-              } else { // nếu chọn nút cất và thêm
+              } else {
+                // nếu chọn nút cất và thêm
                 // Reset Form
                 this.$emit("resetFormData");
                 this.$emit("onClickAddEmployee");
@@ -393,7 +401,8 @@ export default {
               if (modeBtn == 0) {
                 // Hide modal
                 this.onClickClose();
-              } else { // nếu chọn nút cất và thêm
+              } else {
+                // nếu chọn nút cất và thêm
                 // Reset Form
                 this.$emit("resetFormData");
                 this.$emit("onClickAddEmployee");
@@ -427,6 +436,7 @@ export default {
       await this.$emit("resetFormData");
       this.$emit("hideEmployeeModal");
       this.changeForm = 0;
+      this.submitted = false;
     },
 
     /**
