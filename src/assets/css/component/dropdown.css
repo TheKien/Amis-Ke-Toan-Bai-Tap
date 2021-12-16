@@ -1,6 +1,8 @@
 .m-dropdown {
   position: relative;
+  padding: 1px 6px;
 }
+
 .m-dropdown-list {
   background-color: #fff !important;
   display: none;
@@ -13,23 +15,28 @@
   min-width: 100px;
   border: 1px solid #b8bcc3;
 }
+
 .m-dropdown-item {
   font-weight: 400 !important;
   font-size: 13px;
   padding: 5px;
   cursor: pointer;
 }
+
 .m-dropdown-item:hover {
   background: rgb(218, 217, 217);
   color: #08bf1e;
 }
+
 .m-dropdown-active {
   border: 1px solid #0075c0;
-  padding: 1px 6px;
+  
 }
+
 .m-dropdown-active .m-dropdown-list {
   display: block;
 }
+
 .m-dropdown-menu {
   background: #fff;
   padding: 2px 1px;

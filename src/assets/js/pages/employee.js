@@ -32,7 +32,7 @@ export default {
       inputSearch: "",
       // Pagination
       pageNumber: 1,
-      pageSize: 5,
+      pageSize: 10,
       totalRecord: 0,
       totalPage: 0,
       // Employee
@@ -65,11 +65,11 @@ export default {
 
   methods: {
     /**
-     * Lấy danh sách nhân viên
-     * Author: TheKien(3/12/2021)
+     * Get all employee
+     * Author: TTKien(3/12/2021)
      */
     getAllEmployee() {
-      // Gọi Api
+      // Call api
       _api
         .get(
           `${this.apiRouter}/filter?pageSize=${this.pageSize}&pageNumber=${this.pageNumber}&employeeFilter=${this.inputSearch}`
@@ -83,16 +83,13 @@ export default {
           console.log(e);
         });
     },
-    pageChange(selectedPage) {
-      this.pageNumber = selectedPage;
-      this.getAllEmployee();
-    },
+
     /**
-     * Nhấn nút thêm mới nhân viên và hiển thị modal
-     * Author: TheKien(10/12/2021)
+     * Click button create employee
+     * Author: TTKien(6/12/2021)
      */
     onClickAddEmployee() {
-      // mode là thêm mới
+      // mode create
       this.isCreate = true;
       // reset form
       (this.employee = {
@@ -113,11 +110,12 @@ export default {
         BankName: "",
         BankBranchName: "",
       }),
-        // Gọi api lấy mã nhân viên mới
+        // Call api get new EmployeeCode
         _api
           .get(`${this.apiRouter}/NewEmployeeCode`)
           .then((response) => {
             this.employee.EmployeeCode = response.data;
+            // Show modal
             this.showEmployeeModal();
           })
           .catch((res) => {
@@ -126,13 +124,13 @@ export default {
     },
 
     /**
-     * Nhấn nút sửa nhân viên và hiển thị modal
-     * Author: TheKien(6/12/2021)
+     * Click button update employee
+     * Author: TTKien(6/12/2021)
      */
     onClickUpdateEmployee(id) {
-      // mode là sửa
+      // Mode update
       this.isCreate = false;
-      // Lấy đối tượng chọn
+      // Call api get employee by id
       this.employeeId = id;
       _api
         .get(`${this.apiRouter}/${this.employeeId}`)
@@ -144,7 +142,7 @@ export default {
           this.employee.IdentityDate = this.formatDateYYYYMMDD(
             this.employee.IdentityDate
           );
-          // Hiển thị modal
+          // Show modal
           this.showEmployeeModal();
         })
         .catch((res) => {
@@ -153,26 +151,59 @@ export default {
     },
 
     /**
-     * Hiển thị modal
-     * Author: TheKien(6/12/2021)
+     * Click button delete employee
+     * Author: TTKien (14/12/2021)
      */
-    showEmployeeModal() {
-      this.isShowModal = true;
+    onClickDeleteEmployee(model) {
+      this.employeeId = model.EmployeeId;
+      let title = `Bạn có chắc chắn muốn xoá Nhân viên <${model.EmployeeCode}> không?`;
+      // Show popup warning
+      this.showPopupWarning(title);
     },
 
     /**
-     * Ẩn modal
-     * Author: TheKien(6/12/2021)
+     * Delete an employee
+     * Author: TTKien (9/12/2021)
      */
-    hideEmployeeModal() {
-      this.isShowModal = false;
+    deleteEmployee() {
+      let _this = this;
+      // Call api to delete an employee
+      _api
+        .delete(this.apiRouter, this.employeeId)
+        .then(function () {
+          // Load data
+          _this.getAllEmployee();
+          // Hide popup
+          _this.hidePopup(false);
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
     },
 
     /**
-     * Tích nút checkbox all
-     * Author: TheKien(6/12/2021)
+     * Change page number
+     * Author: TTKien(14/12/2021)
      */
-    checkAll() {
+    pageChange(selectedPage) {
+      this.pageNumber = selectedPage;
+      this.getAllEmployee();
+    },
+
+    /**
+     * Context menu
+     * Author: TTKien (14/12/2021)
+     */
+    onClickShowBtnDel(id) {
+      this.employeeId = id;
+      this.showBtnDel = !this.showBtnDel;
+    },
+
+    /**
+     * Click checkbox select all
+     * Author: TTKien(6/12/2021)
+     */
+    onClickCheckAll() {
       this.isCheckAll = !this.isCheckAll;
       this.selectedEmployees = [];
       if (this.isCheckAll) {
@@ -184,8 +215,8 @@ export default {
     },
 
     /**
-     * Cập nhật nếu chọn hoặc bỏ chọn một nhân viên
-     * Author: TheKien(6/12/2021)
+     * Update selected list if change selected emoloyee
+     * Author: TTKien(6/12/2021)
      */
     updateCheckAll() {
       if (this.selectedEmployees.length == this.employeeList.length) {
@@ -197,8 +228,24 @@ export default {
     },
 
     /**
-     * Hiển thị thông báo cảnh báo
-     * Author: TheKien (14/12/2021)
+     * Show modal employee
+     * Author: TTKien(6/12/2021)
+     */
+    showEmployeeModal() {
+      this.isShowModal = true;
+    },
+
+    /**
+     * Hide modal employee
+     * Author: TTKien(6/12/2021)
+     */
+    hideEmployeeModal() {
+      this.isShowModal = false;
+    },
+
+    /**
+     * Show popup warning
+     * Author: TTKien (14/12/2021)
      */
     showPopupWarning(title) {
       this.isShowPopup = true;
@@ -207,56 +254,28 @@ export default {
     },
 
     /**
-     * Hiển thị thông báo nguy hiểm
-     * Author: TheKien (14/12/2021)
+     * Show popup danger
+     * Author: TTKien (14/12/2021)
      */
     showPopupDanger(title) {
       this.isShowPopup = true;
       this.popup.Status = "Danger";
       this.popup.Title = title;
     },
+
     /**
-     * Ẩn popup
-     * Author: TheKien (14/12/2021)
+     * Hide popup
+     * Author: TTKien (14/12/2021)
      */
     hidePopup() {
       this.isShowPopup = false;
       this.popup.Status = "";
       this.popup.Title = "";
     },
-    /**
-     * Click nút xoá nhân viên
-     * Author: TheKien (14/12/2021)
-     */
-    onClickDeleteEmployee(model) {
-      this.employeeId = model.EmployeeId;
-      let title = `Bạn có chắc chắn muốn xoá Nhân viên <${model.EmployeeCode}> không?`;
-      // show popup confirm
-      this.showPopupWarning(title);
-    },
 
     /**
-     * Xoá nhân viên đã chọn
-     * Author: TheKien (9/12/2021)
-     */
-    deleteEmployee() {
-      let _this = this;
-      // call api to delete an employee
-      _api
-        .delete(this.apiRouter, this.employeeId)
-        .then(function () {
-          // load data
-          _this.getAllEmployee();
-          // Hide popup confirm
-          _this.hidePopup(false);
-        })
-        .catch(function (e) {
-          console.log(e);
-        });
-    },
-    /**
-     * Chuyển dạng datetime thành YYYY-MM-DD
-     * Author: TheKien (10/12/2021)
+     * Format datetime to YYYY-MM-DD
+     * Author: TTKien (10/12/2021)
      */
     formatDateYYYYMMDD(dateTime) {
       if (dateTime) {
@@ -266,15 +285,11 @@ export default {
         return date.getFullYear() + "-" + month + "-" + day;
       }
     },
-    onClickShowBtnDel(id) {
-      this.employeeId = id;
-      this.showBtnDel = !this.showBtnDel;
-    }
   },
   filters: {
     /**
-     * Chuyển dạng datetime thành DD-MM-YYYY
-     * Author: TheKien(3/12/2021)
+     * Format datetime to DD-MM-YYYY
+     * Author: TTKien(3/12/2021)
      */
     formatDateDDMMYYYY(value) {
       if (value) return moment(String(value)).format("DD-MM-YYYY");
@@ -282,7 +297,7 @@ export default {
 
     /**
      * Format number to money VD: 1000000 => 1.000.000
-     * Author: TheKien(3/12/2021)
+     * Author: TTKien(3/12/2021)
      */
     formatMoney(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -290,12 +305,21 @@ export default {
     },
   },
   watch: {
+    /**
+     * Type input search
+     * Author: TTKien(14/12/2021)
+     */
     inputSearch() {
       this.getAllEmployee();
     },
+
+    /**
+     * Change page size
+     * Author: TTKien(14/12/2021)
+     */
     pageSize() {
       this.pageNumber = 1;
       this.getAllEmployee();
-    }
+    },
   },
 };

@@ -2,8 +2,9 @@
   <div class="m-modal-box" :class="{ 'modal-show': isShowModal }">
     <div class="m-modal">
       <div class="m-flex-between">
+        <!--===== Modal header ======-->
         <div class="m-modal-header">
-          <div class="m-modal-title">Thêm thông tin nhân viên</div>
+          <div class="m-modal-title">Thông tin nhân viên</div>
           <div class="m-modal-checkbox m-flex-item-center">
             <input type="checkbox" class="m-checkbox" /><span
               style="margin-left: 10px"
@@ -15,21 +16,27 @@
             >
           </div>
         </div>
+        <!--===== End modal header ======-->
         <div class="m-modal-icon m-flex">
           <div class="mi mi-24 mi-help"></div>
+          <!-- Button close -->
           <div
             class="m-modal-close mi mi-24 mi-close"
-            @click="hideModal()"
+            @click="onClickClose()"
           ></div>
         </div>
       </div>
+
+      <!--===== Modal content ======-->
       <div class="m-modal-content">
         <form>
           <div class="m-flex m-pb-12">
             <div class="m-pr-26 m-form-group">
+
               <div class="m-form-row m-flex">
                 <div class="m-pr-6">
                   <label class="m-form-lable" for="">Mã <span> *</span></label>
+                  <!-- Input EmployeeCode -->
                   <input
                     type="text"
                     class="m-form-input"
@@ -41,9 +48,9 @@
                     }"
                   />
                 </div>
-
                 <div style="flex: 1">
                   <label class="m-form-lable" for="">Tên <span> *</span></label>
+                  <!-- Input EmployeeName -->
                   <input
                     type="text"
                     class="m-form-input"
@@ -58,6 +65,7 @@
 
               <div class="m-form-row">
                 <label class="m-form-lable">Đơn vị <span> *</span></label>
+                <!-- Combobox Department-->
                 <v-select
                   :options="departmentList"
                   label="DepartmentName"
@@ -86,9 +94,9 @@
                   </template>
                 </v-select>
               </div>
-
               <div class="m-form-row">
                 <label class="m-form-lable">Chức danh</label>
+                <!-- Input EmployeePosition -->
                 <input
                   type="text"
                   class="m-form-input"
@@ -101,52 +109,55 @@
               <div class="m-form-row m-flex">
                 <div class="m-pr-6">
                   <label class="m-form-lable" for="">Ngày sinh</label>
+                  <!-- Input DateOfBirth -->
                   <input
                     type="date"
                     class="m-form-input"
                     v-model="employee.DateOfBirth"
                   />
                 </div>
-
                 <div class="m-pl-10">
                   <label class="m-form-lable" for="">Giới tính</label>
                   <div class="m-radio-region">
-                  <div class="m-mr-20 m-radio-label">
-                    <input
-                      type="radio"
-                      class="m-radio"
-                      name="gender"
-                      value="1"
-                      v-model="employee.Gender"
-                    />
-                    <label for="gender">Nam</label>
+                    <div class="m-mr-20 m-radio-label">
+                      <!-- Input Radio Gender:'Nam' -->
+                      <input
+                        type="radio"
+                        class="m-radio"
+                        name="gender"
+                        value="1"
+                        v-model="employee.Gender"
+                      />
+                      <label for="gender">Nam</label>
+                    </div>
+                    <div class="m-radio-label">
+                      <!-- Input Radio Gender:'Nữ' -->
+                      <input
+                        type="radio"
+                        class="m-radio"
+                        name="gender"
+                        value="0"
+                        v-model="employee.Gender"
+                      />
+                      <label for="gender">Nữ</label>
+                    </div>
                   </div>
-                  <div class="m-radio-label">
-                    <input
-                      type="radio"
-                      class="m-radio"
-                      name="gender"
-                      value="0"
-                      v-model="employee.Gender"
-                    />
-                    <label for="gender">Nữ</label>
-                  </div>
-                </div>
                 </div>
               </div>
 
               <div class="m-form-row m-flex">
                 <div class="m-pr-6" style="flex: 1">
                   <label class="m-form-lable" for="">Số CMND</label>
+                  <!-- Input IdentityNumber -->
                   <input
                     type="text"
                     class="m-form-input"
                     v-model="employee.IdentityNumber"
                   />
                 </div>
-
                 <div>
                   <label class="m-form-lable" for="">Ngày cấp</label>
+                  <!-- Input IdentityDate -->
                   <input
                     type="date"
                     class="m-form-input"
@@ -157,6 +168,7 @@
 
               <div class="m-form-row">
                 <label class="m-form-lable" for="">Nơi cấp</label>
+                <!-- Input IdentityPlace -->
                 <input
                   type="text"
                   class="m-form-input"
@@ -168,6 +180,7 @@
 
           <div class="m-form-row">
             <label class="m-form-lable" for="">Địa chỉ</label>
+            <!-- Input Address -->
             <input
               type="text"
               class="m-form-input"
@@ -178,24 +191,25 @@
           <div class="m-form-row m-flex">
             <div class="m-pr-6">
               <label class="m-form-lable" for="">ĐT di động</label>
+              <!-- Input TelephoneNumber -->
               <input
                 type="text"
                 class="m-form-input"
                 v-model="employee.TelephoneNumber"
               />
             </div>
-
             <div class="m-pr-6">
               <label class="m-form-lable" for="">ĐT cố định</label>
+              <!-- Input PhoneNumber -->
               <input
                 type="text"
                 class="m-form-input"
                 v-model="employee.PhoneNumber"
               />
             </div>
-
             <div>
               <label class="m-form-lable" for="">Email</label>
+              <!-- Input Email -->
               <input
                 type="text"
                 class="m-form-input"
@@ -207,6 +221,7 @@
           <div class="m-form-row m-flex">
             <div class="m-pr-6">
               <label class="m-form-lable" for="">Tài khoản ngân hàng</label>
+              <!-- Input BankAccountNumber -->
               <input
                 type="text"
                 class="m-form-input"
@@ -216,6 +231,7 @@
 
             <div class="m-pr-6">
               <label class="m-form-lable" for="">Tên ngân hàng</label>
+              <!-- Input BankName -->
               <input
                 type="text"
                 class="m-form-input"
@@ -225,6 +241,7 @@
 
             <div>
               <label class="m-form-lable" for="">Chi nhánh</label>
+              <!-- Input BankBranchName -->
               <input
                 type="text"
                 class="m-form-input"
@@ -234,18 +251,25 @@
           </div>
         </form>
       </div>
+      <!--===== End modal header ======-->
+
+      <!--===== Modal footer ======-->
       <div class="m-modal-footer">
-        <button class="m-btn m-btn-gray">Huỷ</button>
+        <!-- Button close -->
+        <button class="m-btn m-btn-gray" @click="onClickClose()">Huỷ</button>
         <div>
+          <!-- Button save and close-->
           <button
             class="m-btn m-btn-gray m-mr-10"
             @click="onClickSubmitAndExit()"
           >
             Cất
           </button>
+          <!-- Button save and create -->
           <button class="m-btn m-btn-success">Cất và Thêm</button>
         </div>
       </div>
+      <!--===== End modal footer ======-->
     </div>
     <div class="modal-background"></div>
   </div>
@@ -268,7 +292,7 @@ export default {
   },
 
   validations: {
-    // validate dữ liệu gửi về
+    // Validate data
     employee: {
       EmployeeCode: {
         required,
@@ -283,11 +307,11 @@ export default {
   },
   methods: {
     /**
-     *  Lấy tất cả phòng ban
-     *  Author: TheKien(10/12/2021)
+     *  Get All Department
+     *  Author: TTKien(6/12/2021)
      */
-    getDeparment: function () {
-      // Gọi Api
+    getDeparment() {
+      // Call api
       _api
         .get("/Departments")
         .then((response) => {
@@ -299,45 +323,47 @@ export default {
     },
 
     /**
-     * Nhấn nút cất trên form thêm sửa nhân viên
-     * Author: TheKien(6/12/2021)
+     * Click button save and exit
+     * Author: TTKien(6/12/2021)
      */
-    onClickSubmitAndExit: function () {
+    onClickSubmitAndExit() {
+      let _this = this;
+      // On validate  
       this.submitted = true;
       this.$v.$touch();
+      // if data error
       if (this.$v.$invalid) {
-        if(!this.$v.employee.EmployeeCode.required){
-          this.$emit("showPopupDanger", 'Mã nhân viên không được bỏ trống');
+        if (!this.$v.employee.EmployeeCode.required) {
+          this.$emit("showPopupDanger", "Mã nhân viên không được bỏ trống");
           return;
         }
-         if(!this.$v.employee.EmployeeName.required){
-          this.$emit("showPopupDanger", 'Tên nhân viên không được bỏ trống');
+        if (!this.$v.employee.EmployeeName.required) {
+          this.$emit("showPopupDanger", "Tên nhân viên không được bỏ trống");
           return;
         }
-         if(!this.$v.employee.DepartmentId.required){
-          this.$emit("showPopupDanger", 'Đơn vị nhân viên không được bỏ trống');
+        if (!this.$v.employee.DepartmentId.required) {
+          this.$emit("showPopupDanger", "Đơn vị nhân viên không được bỏ trống");
           return;
         }
       } else {
-        // Thêm mới
+        // create employee
         if (this.isCreate) {
           _api
             .create(this.apiRouter, this.employee)
             .then(() => {
-              // load lại dữ liệu
+              // Reset data
               this.$emit("getAllEmployee");
               this.submitted = false;
-              // Ẩn modal
-              this.hideModal();
+              // Hide modal
+              this.onClickClose();
             })
             .catch(function (res) {
-              console.log(res.response.data);
               const status = res.response.status;
               switch (status) {
                 case 400:
-                  alert(res.response.data.userMsg);
+                  // Show popup danger to users
+                  _this.$emit("showPopupDanger", res.response.data.userMsg);
                   break;
-
                 default:
                   break;
               }
@@ -347,17 +373,18 @@ export default {
           _api
             .update(this.apiRouter, this.employeeId, this.employee)
             .then(() => {
-              // load lại dữ liệu
+              // Reset data
               this.$emit("getAllEmployee");
-              // Ẩn modal
-              this.hideModal();
+              // Hide modal
+              this.onClickClose();
             })
             .catch(function (res) {
               console.log(res.response.data);
               const status = res.response.status;
               switch (status) {
                 case 400:
-                  console(res.response.data.userMsg);
+                  // Show popup danger to users
+                  _this.$emit("showPopupDanger", res.response.data.userMsg);
                   break;
                 default:
                   break;
@@ -368,12 +395,12 @@ export default {
     },
 
     /**
-     *  Gọi hàm ẩn modal bên EmployeeList
-     *  Author: TheKien(6/12/2021)
+     *  Call function hide modal in parent component
+     *  Author: TTKien(6/12/2021)
      */
-    hideModal: function () {
+    onClickClose() {
       this.submitted = false;
-      this.$emit("hideModal");
+      this.$emit("hideEmployeeModal");
     },
   },
 };
