@@ -326,7 +326,7 @@ export default {
      * Click button save and exit
      * Author: TTKien(6/12/2021)
      */
-    onClickSubmit(modeBtn) {
+     onClickSubmit(modeBtn) {
       let _this = this;
       // On validate
       this.submitted = true;
@@ -354,14 +354,18 @@ export default {
               // Reset data
               this.$emit("getAllEmployee");
               this.submitted = false;
+               // nếu chọn nút cất
               if (modeBtn == 0) {
                 // Hide modal
                 this.onClickClose();
-              } else {
+              } else { // nếu chọn nút cất và thêm
                 // Reset Form
                 this.$emit("resetFormData");
                 this.$emit("onClickAddEmployee");
-                this.changeForm = 0;
+                this.submitted = false;
+                setTimeout(() => {
+                  this.changeForm = 0;
+                }, 0);
               }
             })
             .catch(function (res) {
@@ -385,8 +389,19 @@ export default {
             .then(() => {
               // Reset data
               this.$emit("getAllEmployee");
-              // Hide modal
-              this.onClickClose();
+              // nếu chọn nút cất
+              if (modeBtn == 0) {
+                // Hide modal
+                this.onClickClose();
+              } else { // nếu chọn nút cất và thêm
+                // Reset Form
+                this.$emit("resetFormData");
+                this.$emit("onClickAddEmployee");
+                this.submitted = false;
+                setTimeout(() => {
+                  this.changeForm = 0;
+                }, 0);
+              }
             })
             .catch(function (res) {
               console.log(res.response.data);
@@ -409,15 +424,13 @@ export default {
      *  Author: TTKien(6/12/2021)
      */
     async onClickClose() {
-      this.submitted = false;
       await this.$emit("resetFormData");
-
       this.$emit("hideEmployeeModal");
       this.changeForm = 0;
     },
 
     /**
-     *  Call function hide modal in parent component
+     *  If change form, click btn exit show popup question
      *  Author: TTKien(6/12/2021)
      */
     onClickExit() {
@@ -432,6 +445,10 @@ export default {
     },
   },
   watch: {
+    /**
+     *  If change form, changeForm + 1
+     *  Author: TTKien(15/12/2021)
+     */
     employee: {
       handler: function () {
         this.changeForm += 1;

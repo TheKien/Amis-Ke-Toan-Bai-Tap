@@ -33,7 +33,7 @@
           </button>
           <div class="m-flex">
             <!-- Button close -->
-            <button class="m-btn m-btn-gray m-mr-10" @click="onClickClose()">
+            <button class="m-btn m-btn-gray m-mr-10" @click="onClickNot()">
               Không
             </button>
             <!-- Button comfirm -->
@@ -74,6 +74,14 @@ export default {
     onClickClose() {
       this.$emit("onClickClosePopup");
     },
+    /**
+     * If click NOT, close the popup question
+     * Author: TTKien (12/12/2021)
+     */
+    onClickNot() {
+      this.$emit("onClickClosePopup");
+      this.$emit("hideEmployeeModal");
+    }
   },
   watch: {
     /**

@@ -166,6 +166,7 @@
       :popup="popup"
       @onClickClosePopup="hidePopup"
       @onClickComfirm="deleteEmployee"
+      @hideEmployeeModal="hideEmployeeModal"
     ></base-popup>
     <!--=========== End Popup ===========-->
   </div>
