@@ -116,7 +116,7 @@
 
       <!--===== Main footer =====-->
       <div class="main-footer">
-        <div class="total-item">Tổng số: {{ totalRecord }} bản ghi</div>
+        <div class="total-item">Tổng số: <strong>{{ totalRecord }}</strong> bản ghi</div>
         <div class="option"></div>
         <!-- Combobox change page size -->
         <div class="page-size">
@@ -153,7 +153,10 @@
       :employeeId="employeeId"
       @hideEmployeeModal="hideEmployeeModal"
       @getAllEmployee="getAllEmployee"
+      @onClickAddEmployee="onClickAddEmployee"
       @showPopupDanger="showPopupDanger"
+      @showPopupQuestion="showPopupQuestion"
+      @resetFormData="resetFormData"
     ></employee-modal>
     <!--=========== End Modal ===========-->
 

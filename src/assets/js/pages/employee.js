@@ -77,7 +77,12 @@ export default {
         .then((response) => {
           this.employeeList = response.data.Data;
           this.totalRecord = response.data.TotalRecord;
-          this.totalPage = response.data.TotalPage;
+          if (response.data) {
+            this.totalPage = response.data.TotalPage;
+          } else {
+            this.totalPage = 1;
+            this.totalRecord = 0;
+          }
         })
         .catch((e) => {
           console.log(e);
@@ -91,36 +96,17 @@ export default {
     onClickAddEmployee() {
       // mode create
       this.isCreate = true;
-      // reset form
-      (this.employee = {
-        EmployeeCode: "",
-        EmployeeName: "",
-        DepartmentId: "",
-        EmployeePosition: "",
-        Gender: 1,
-        DateOfBirth: "",
-        PhoneNumber: "",
-        TelephoneNumber: "",
-        Email: "",
-        Address: "",
-        IdentityNumber: "",
-        IdentityDate: "",
-        IdentityPlace: "",
-        BankAccountNumber: "",
-        BankName: "",
-        BankBranchName: "",
-      }),
-        // Call api get new EmployeeCode
-        _api
-          .get(`${this.apiRouter}/NewEmployeeCode`)
-          .then((response) => {
-            this.employee.EmployeeCode = response.data;
-            // Show modal
-            this.showEmployeeModal();
-          })
-          .catch((res) => {
-            console.log(res);
-          });
+      // Call api get new EmployeeCode
+      _api
+        .get(`${this.apiRouter}/NewEmployeeCode`)
+        .then((response) => {
+          this.employee.EmployeeCode = response.data;
+          // Show modal
+          this.showEmployeeModal();
+        })
+        .catch((res) => {
+          console.log(res);
+        });
     },
 
     /**
@@ -182,21 +168,46 @@ export default {
     },
 
     /**
-     * Change page number
-     * Author: TTKien(14/12/2021)
-     */
-    pageChange(selectedPage) {
-      this.pageNumber = selectedPage;
-      this.getAllEmployee();
-    },
-
-    /**
      * Context menu
      * Author: TTKien (14/12/2021)
      */
     onClickShowBtnDel(id) {
       this.employeeId = id;
       this.showBtnDel = !this.showBtnDel;
+    },
+
+    /**
+     * Reset form modal employee
+     * Author: TTKien (14/12/2021)
+     */
+    resetFormData() {
+      this.employee = {
+        EmployeeCode: "",
+        EmployeeName: "",
+        DepartmentId: "",
+        EmployeePosition: "",
+        Gender: 1,
+        DateOfBirth: "",
+        PhoneNumber: "",
+        TelephoneNumber: "",
+        Email: "",
+        Address: "",
+        IdentityNumber: "",
+        IdentityDate: "",
+        IdentityPlace: "",
+        BankAccountNumber: "",
+        BankName: "",
+        BankBranchName: "",
+      };
+    },
+
+    /**
+     * Change page number
+     * Author: TTKien(14/12/2021)
+     */
+    pageChange(selectedPage) {
+      this.pageNumber = selectedPage;
+      this.getAllEmployee();
     },
 
     /**
@@ -244,6 +255,16 @@ export default {
     },
 
     /**
+     * Show popup question
+     * Author: TTKien (14/12/2021)
+     */
+    showPopupQuestion(title) {
+      this.isShowPopup = true;
+      this.popup.Status = "Question";
+      this.popup.Title = title;
+    },
+
+    /**
      * Show popup warning
      * Author: TTKien (14/12/2021)
      */
@@ -286,13 +307,14 @@ export default {
       }
     },
   },
+
   filters: {
     /**
      * Format datetime to DD-MM-YYYY
      * Author: TTKien(3/12/2021)
      */
     formatDateDDMMYYYY(value) {
-      if (value) return moment(String(value)).format("DD-MM-YYYY");
+      if (value) return moment(String(value)).format("DD/MM/YYYY");
     },
 
     /**
@@ -304,6 +326,7 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
   },
+
   watch: {
     /**
      * Type input search

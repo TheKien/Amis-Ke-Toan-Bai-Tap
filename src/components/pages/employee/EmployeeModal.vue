@@ -22,7 +22,7 @@
           <!-- Button close -->
           <div
             class="m-modal-close mi mi-24 mi-close"
-            @click="onClickClose()"
+            @click="onClickExit()"
           ></div>
         </div>
       </div>
@@ -32,7 +32,6 @@
         <form>
           <div class="m-flex m-pb-12">
             <div class="m-pr-26 m-form-group">
-
               <div class="m-form-row m-flex">
                 <div class="m-pr-6">
                   <label class="m-form-lable" for="">Mã <span> *</span></label>
@@ -259,14 +258,13 @@
         <button class="m-btn m-btn-gray" @click="onClickClose()">Huỷ</button>
         <div>
           <!-- Button save and close-->
-          <button
-            class="m-btn m-btn-gray m-mr-10"
-            @click="onClickSubmitAndExit()"
-          >
+          <button class="m-btn m-btn-gray m-mr-10" @click="onClickSubmit(0)">
             Cất
           </button>
           <!-- Button save and create -->
-          <button class="m-btn m-btn-success">Cất và Thêm</button>
+          <button class="m-btn m-btn-success" @click="onClickSubmit(1)">
+            Cất và Thêm
+          </button>
         </div>
       </div>
       <!--===== End modal footer ======-->
@@ -277,6 +275,7 @@
 <script>
 import _api from "../../../services/ApiService.js";
 import { required } from "vuelidate/lib/validators";
+
 export default {
   created() {
     this.getDeparment();
@@ -288,6 +287,7 @@ export default {
     return {
       departmentList: [],
       submitted: false,
+      changeForm: 0,
     };
   },
 
@@ -326,9 +326,9 @@ export default {
      * Click button save and exit
      * Author: TTKien(6/12/2021)
      */
-    onClickSubmitAndExit() {
+    onClickSubmit(modeBtn) {
       let _this = this;
-      // On validate  
+      // On validate
       this.submitted = true;
       this.$v.$touch();
       // if data error
@@ -354,15 +354,25 @@ export default {
               // Reset data
               this.$emit("getAllEmployee");
               this.submitted = false;
-              // Hide modal
-              this.onClickClose();
+              if (modeBtn == 0) {
+                // Hide modal
+                this.onClickClose();
+              } else {
+                // Reset Form
+                this.$emit("resetFormData");
+                this.$emit("onClickAddEmployee");
+                this.changeForm = 0;
+              }
             })
             .catch(function (res) {
               const status = res.response.status;
               switch (status) {
                 case 400:
                   // Show popup danger to users
-                  _this.$emit("showPopupDanger", res.response.data.userMsg);
+                  _this.$emit(
+                    "showPopupDanger",
+                    `Mã nhân viên <${_this.employee.EmployeeCode}> đã tồn tại trong hệ thống, vui lòng kiểm tra lại.`
+                  );
                   break;
                 default:
                   break;
@@ -398,9 +408,35 @@ export default {
      *  Call function hide modal in parent component
      *  Author: TTKien(6/12/2021)
      */
-    onClickClose() {
+    async onClickClose() {
       this.submitted = false;
+      await this.$emit("resetFormData");
+
       this.$emit("hideEmployeeModal");
+      this.changeForm = 0;
+    },
+
+    /**
+     *  Call function hide modal in parent component
+     *  Author: TTKien(6/12/2021)
+     */
+    onClickExit() {
+      if (this.changeForm > 1) {
+        this.$emit(
+          "showPopupQuestion",
+          "Dữ liệu đã bị thay đổi. Bạn có muốn cất không?"
+        );
+      } else {
+        this.onClickClose();
+      }
+    },
+  },
+  watch: {
+    employee: {
+      handler: function () {
+        this.changeForm += 1;
+      },
+      deep: true,
     },
   },
 };

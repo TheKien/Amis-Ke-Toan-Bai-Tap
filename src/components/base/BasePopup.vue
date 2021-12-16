@@ -26,6 +26,22 @@
             Đóng
           </button>
         </div>
+        <div v-if="popup.Status == 'Question'" class="m-flex-between">
+          <!-- Button close -->
+          <button class="m-btn m-btn-gray" @click="onClickClose()">
+            Huỷ
+          </button>
+          <div class="m-flex">
+            <!-- Button close -->
+            <button class="m-btn m-btn-gray m-mr-10" @click="onClickClose()">
+              Không
+            </button>
+            <!-- Button comfirm -->
+            <button class="m-btn m-btn-success" @click="onClickComfirm()">
+              Có
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="m-popup-background"></div>
@@ -58,7 +74,6 @@ export default {
     onClickClose() {
       this.$emit("onClickClosePopup");
     },
-
   },
   watch: {
     /**
@@ -73,11 +88,13 @@ export default {
         case "Danger":
           this.icon = "mi mi-48 mi-exclamation-error-48-2";
           break;
+        case "Question":
+          this.icon = "mi mi-48 mi-exclamation-question-48";
+          break;
         default:
           break;
       }
     },
-
   },
 };
 </script>
