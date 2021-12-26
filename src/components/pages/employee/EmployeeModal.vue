@@ -95,11 +95,11 @@
               </div>
               <div class="m-form-row">
                 <label class="m-form-lable">Chức danh</label>
-                <!-- Input EmployeePosition -->
+                <!-- Input PositionName -->
                 <input
                   type="text"
                   class="m-form-input"
-                  v-model="employee.EmployeePosition"
+                  v-model="employee.PositionName"
                 />
               </div>
             </div>
@@ -113,6 +113,7 @@
                     type="date"
                     class="m-form-input"
                     v-model="employee.DateOfBirth"
+                    placeholder="DD/MM/YYYY"
                   />
                 </div>
                 <div class="m-pl-10">
@@ -190,20 +191,21 @@
           <div class="m-form-row m-flex">
             <div class="m-pr-6">
               <label class="m-form-lable" for="">ĐT di động</label>
+              <!-- Input PhoneNumber -->
+              <input
+                type="text"
+                class="m-form-input"
+                v-mask="'###-###-####'"
+                v-model="employee.PhoneNumber"
+              />
+            </div>
+            <div class="m-pr-6">
+              <label class="m-form-lable" for="">ĐT cố định</label>
               <!-- Input TelephoneNumber -->
               <input
                 type="text"
                 class="m-form-input"
                 v-model="employee.TelephoneNumber"
-              />
-            </div>
-            <div class="m-pr-6">
-              <label class="m-form-lable" for="">ĐT cố định</label>
-              <!-- Input PhoneNumber -->
-              <input
-                type="text"
-                class="m-form-input"
-                v-model="employee.PhoneNumber"
               />
             </div>
             <div>
@@ -220,11 +222,11 @@
           <div class="m-form-row m-flex">
             <div class="m-pr-6">
               <label class="m-form-lable" for="">Tài khoản ngân hàng</label>
-              <!-- Input BankAccountNumber -->
+              <!-- Input BankAccount -->
               <input
                 type="text"
                 class="m-form-input"
-                v-model="employee.BankAccountNumber"
+                v-model="employee.BankAccount"
               />
             </div>
 
@@ -240,11 +242,11 @@
 
             <div>
               <label class="m-form-lable" for="">Chi nhánh</label>
-              <!-- Input BankBranchName -->
+              <!-- Input BankBranch -->
               <input
                 type="text"
                 class="m-form-input"
-                v-model="employee.BankBranchName"
+                v-model="employee.BankBranch"
               />
             </div>
           </div>
@@ -361,6 +363,7 @@ export default {
           this.$emit("showPopupDanger", "Đơn vị nhân viên không được bỏ trống");
           return;
         }
+        return;
       } else {
         // CREATE EMPLOYEE
         if (this.isCreate) {
@@ -387,13 +390,15 @@ export default {
             })
             .catch(function (res) {
               const status = res.response.status;
+              console.log(res);
+
               switch (status) {
                 case 400:
                   // Show popup danger to users
-                  _this.$emit(
-                    "showPopupDanger",
-                    `Mã nhân viên <${_this.employee.EmployeeCode}> đã tồn tại trong hệ thống, vui lòng kiểm tra lại.`
-                  );
+                  _this.$emit("showPopupDanger", res.response.data.data[0]);
+                  break;
+                case 500:
+                  _this.$emit("showPopupDanger", res.response.data.userMsg);
                   break;
                 default:
                   break;
@@ -428,6 +433,9 @@ export default {
               switch (status) {
                 case 400:
                   // Show popup danger to users
+                  _this.$emit("showPopupDanger", res.response.data.data);
+                  break;
+                  case 500:
                   _this.$emit("showPopupDanger", res.response.data.userMsg);
                   break;
                 default:

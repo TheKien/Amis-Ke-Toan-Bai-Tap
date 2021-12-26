@@ -1,14 +1,24 @@
 import http from "../http-common";
 
 class ApiService {
-    constructor() {
-      this.apiRouter;
-      this.setApi();
-    }
+  constructor() {
+    this.apiRouter;
+    this.setApi();
+  }
   setApi() {}
 
   get(apiRouter) {
     return http.get(`${apiRouter}`);
+  }
+
+  port(apiRouter, obj) {
+    return http.post(`${apiRouter}`, obj);
+  }
+
+  export(apiRouter, obj) {
+    return http.post(`${apiRouter}`, obj, {
+      responseType: "blob",
+    });
   }
 
   getId(id) {
@@ -25,6 +35,10 @@ class ApiService {
 
   delete(apiRouter, id) {
     return http.delete(`${apiRouter}/${id}`);
+  }
+
+  deleteMutilple(apiRouter, obj) {
+    return http.delete(`${apiRouter}`, {data: obj});
   }
 }
 

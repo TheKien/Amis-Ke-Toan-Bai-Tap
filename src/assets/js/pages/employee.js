@@ -2,11 +2,13 @@ import _api from "../../../services/ApiService.js";
 import moment from "moment";
 import EmployeeModal from "../../../components/pages/employee/EmployeeModal.vue";
 import BasePopup from "../../../components/base/BasePopup.vue";
+import BaseLoading from "../../../components/base/BaseLoading.vue";
 import SlidingPagination from "vue-sliding-pagination";
 export default {
   components: {
     EmployeeModal: EmployeeModal,
     BasePopup: BasePopup,
+    BaseLoading: BaseLoading,
     SlidingPagination: SlidingPagination,
   },
 
@@ -23,6 +25,9 @@ export default {
         Title: "",
         Status: "",
       },
+      // Loading
+      loading: false,
+      cols: 0,
       // Dropdown
       showBtnDel: false,
       // Check all
@@ -39,22 +44,22 @@ export default {
       employeeList: [],
       employeeId: "",
       employee: {
-        EmployeeCode: "",
-        EmployeeName: "",
-        DepartmentId: "",
-        EmployeePosition: "",
+        EmployeeCode: null,
+        EmployeeName: null,
+        DepartmentId: null,
+        PositionName: null,
         Gender: 1,
-        DateOfBirth: "",
-        PhoneNumber: "",
-        TelephoneNumber: "",
-        Email: "",
-        Address: "",
-        IdentityNumber: "",
-        IdentityDate: "",
-        IdentityPlace: "",
-        BankAccountNumber: "",
-        BankName: "",
-        BankBranchName: "",
+        DateOfBirth: null,
+        PhoneNumber: null,
+        TelephoneNumber: null,
+        Email: null,
+        Address: null,
+        IdentityNumber: null,
+        IdentityDate: null,
+        IdentityPlace: null,
+        BankAccount: null,
+        BankName: null,
+        BankBranch: null,
       },
     };
   },
@@ -69,10 +74,13 @@ export default {
      * Author: TTKien(3/12/2021)
      */
     getAllEmployee() {
+      this.loading = true;
+      this.cols = 12;
+      let _this = this;
       // Call api
       _api
         .get(
-          `${this.apiRouter}/filter?pageSize=${this.pageSize}&pageNumber=${this.pageNumber}&employeeFilter=${this.inputSearch}`
+          `${this.apiRouter}/Filter?pageSize=${this.pageSize}&pageIndex=${this.pageNumber}&searchText=${this.inputSearch}`
         )
         .then((response) => {
           this.employeeList = response.data.Data;
@@ -83,6 +91,10 @@ export default {
             this.totalPage = 1;
             this.totalRecord = 0;
           }
+          setTimeout(()=>{
+            _this.cols = 0,
+            _this.loading = false;
+          } , 0)
         })
         .catch((e) => {
           console.log(e);
@@ -97,16 +109,7 @@ export default {
       // mode create
       this.isCreate = true;
       // Call api get new EmployeeCode
-      _api
-        .get(`${this.apiRouter}/NewEmployeeCode`)
-        .then((response) => {
-          this.employee.EmployeeCode = response.data;
-          // Show modal
-          this.showEmployeeModal();
-        })
-        .catch((res) => {
-          console.log(res);
-        });
+      this.getEmployeeCodeNew();
     },
 
     /**
@@ -142,11 +145,93 @@ export default {
      */
     onClickDeleteEmployee(model) {
       this.employeeId = model.EmployeeId;
-      let title = `Bạn có chắc chắn muốn xoá Nhân viên <${model.EmployeeCode}> không?`;
+      let title = `Bạn có chắc chắn muốn xoá nhân viên <${model.EmployeeCode}> không?`;
       // Show popup warning
       this.showPopupWarning(title);
     },
 
+    /**
+     * Click button replication employee
+     * Author: (26/12/2021)
+     */
+    onClickReplicationEmployee(id) {
+      // Mode update
+      this.isCreate = true;
+      this.getEmployeeCodeNew();
+      // Call api get employee by id
+      this.employeeId = id;
+      _api
+        .get(`${this.apiRouter}/${this.employeeId}`)
+        .then((response) => {
+          this.employee = response.data;
+          this.employee.DateOfBirth = this.formatDateYYYYMMDD(
+            this.employee.DateOfBirth
+          );
+          this.employee.IdentityDate = this.formatDateYYYYMMDD(
+            this.employee.IdentityDate
+          );
+          // Show modal
+          this.showEmployeeModal();
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    },
+
+    /**
+     * Click export excel list employee
+     */
+    onClickExportExcel() {
+      window.open(
+        "https://localhost:44375/api/v1/Employees/ExportExcel",
+        "_blank"
+      );
+      // _api
+      //   .export(`${this.apiRouter}/ExportExcel`, this.employeeList)
+      //   .then(response => {
+      //     const url = URL.createObjectURL(new Blob([response.data], {
+      //       type: 'application/vnd.ms-excel'
+      //   }))
+      //   const link = document.createElement('a')
+      //   link.href = url
+      //   link.setAttribute('download', 'danh-sach')
+      //   document.body.appendChild(link)
+      //   link.click()
+      //   })
+      //   .catch((res) => {
+      //     console.log(res);
+      //   });
+    },
+
+    /**
+     * Click button delete when checked one or more employees
+     * Author: (26/12/2021)
+     */
+    onclickDeleteSelectEmployee() {
+      let _this = this;
+      _api
+        .deleteMutilple(
+          `${this.apiRouter}/DeleteMutilple`,
+          this.selectedEmployees
+        )
+        .then(function () {
+          _this.selectedEmployees = [];
+          // Load data
+          _this.getAllEmployee();
+          // Hide popup
+          _this.hidePopup(false);
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
+    },
+
+    onClickRefresh(){
+      this.page = 1;
+      this.pageSize = 10;
+      this.inputSearch = "";
+      this.getAllEmployee();
+    }, 
     /**
      * Delete an employee
      * Author: TTKien (9/12/2021)
@@ -168,49 +253,6 @@ export default {
     },
 
     /**
-     * Context menu
-     * Author: TTKien (14/12/2021)
-     */
-    onClickShowBtnDel(id) {
-      this.employeeId = id;
-      this.showBtnDel = !this.showBtnDel;
-    },
-
-    /**
-     * Reset form modal employee
-     * Author: TTKien (14/12/2021)
-     */
-    resetFormData() {
-      this.employee = {
-        EmployeeCode: "",
-        EmployeeName: "",
-        DepartmentId: "",
-        EmployeePosition: "",
-        Gender: 1,
-        DateOfBirth: "",
-        PhoneNumber: "",
-        TelephoneNumber: "",
-        Email: "",
-        Address: "",
-        IdentityNumber: "",
-        IdentityDate: "",
-        IdentityPlace: "",
-        BankAccountNumber: "",
-        BankName: "",
-        BankBranchName: "",
-      };
-    },
-
-    /**
-     * Change page number
-     * Author: TTKien(14/12/2021)
-     */
-    pageChange(selectedPage) {
-      this.pageNumber = selectedPage;
-      this.getAllEmployee();
-    },
-
-    /**
      * Click checkbox select all
      * Author: TTKien(6/12/2021)
      */
@@ -220,7 +262,7 @@ export default {
       if (this.isCheckAll) {
         // Check all
         for (var key in this.employeeList) {
-          this.selectedEmployees.push(this.employeeList[key]);
+          this.selectedEmployees.push(this.employeeList[key].EmployeeId);
         }
       }
     },
@@ -239,6 +281,41 @@ export default {
     },
 
     /**
+     * Context menu
+     * Author: TTKien (14/12/2021)
+     */
+    onClickShowBtnDel(id) {
+      this.employeeId = id;
+      this.showBtnDel = !this.showBtnDel;
+    },
+
+    /**
+     * Get employee code new
+     * Author: TTKien(26/12/2021)
+     */
+    getEmployeeCodeNew() {
+      _api
+        .get(`${this.apiRouter}/NewEmployeeCode`)
+        .then((response) => {
+          this.employee.EmployeeCode = response.data;
+          // Show modal
+          this.showEmployeeModal();
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    },
+
+    /**
+     * Change page number
+     * Author: TTKien(14/12/2021)
+     */
+    pageChange(selectedPage) {
+      this.pageNumber = selectedPage;
+      this.getAllEmployee();
+    },
+
+    /**
      * Show modal employee
      * Author: TTKien(6/12/2021)
      */
@@ -252,6 +329,31 @@ export default {
      */
     hideEmployeeModal() {
       this.isShowModal = false;
+    },
+
+    /**
+     * Reset form modal employee
+     * Author: TTKien (14/12/2021)
+     */
+    resetFormData() {
+      this.employee = {
+        EmployeeCode: "",
+        EmployeeName: "",
+        DepartmentId: "",
+        PositionName: "",
+        Gender: 1,
+        DateOfBirth: "",
+        PhoneNumber: "",
+        TelephoneNumber: "",
+        Email: "",
+        Address: "",
+        IdentityNumber: "",
+        IdentityDate: "",
+        IdentityPlace: "",
+        BankAccount: "",
+        BankName: "",
+        BankBranch: "",
+      };
     },
 
     /**
