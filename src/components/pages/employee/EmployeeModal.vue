@@ -113,7 +113,6 @@
                     type="date"
                     class="m-form-input"
                     v-model="employee.DateOfBirth"
-                    placeholder="DD/MM/YYYY"
                   />
                 </div>
                 <div class="m-pl-10">
