@@ -3,9 +3,18 @@
     <div class="m-popup">
       <div class="m-popup-content">
         <div class="m-flex">
-          <div class="mi mi-48 mi-exclamation-warning-48" v-if="popup.Status == 'Warning'"></div>
-          <div class="mi mi-48 mi-exclamation-error-48-2" v-if="popup.Status == 'Danger'"></div>
-          <div class="mi mi-48 mi-exclamation-question-48" v-if="popup.Status == 'Question'"></div>
+          <div
+            class="mi mi-48 mi-exclamation-warning-48"
+            v-if="popup.Status == 'Warning'"
+          ></div>
+          <div
+            class="mi mi-48 mi-exclamation-error-48-2"
+            v-if="popup.Status == 'Danger'"
+          ></div>
+          <div
+            class="mi mi-48 mi-exclamation-question-48"
+            v-if="popup.Status == 'Question'"
+          ></div>
           <!-- Messenger -->
           <div class="m-messenger">{{ popup.Title }}</div>
         </div>
@@ -65,7 +74,11 @@ export default {
      * Author: TTKien (12/12/2021)
      */
     onClickComfirm() {
-      this.$emit("onClickComfirm");
+      if (this.popup.Mode == 0) {
+        this.$emit("onClickDelete");
+      } else {
+        this.$emit("onClickDeleteMutilple");
+      }
     },
 
     /**

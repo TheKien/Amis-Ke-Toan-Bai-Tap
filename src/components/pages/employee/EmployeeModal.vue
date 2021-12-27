@@ -344,10 +344,20 @@ export default {
         email,
       },
       DateOfBirth: {
-        maxValue: (value) => value < new Date().toISOString(),
+        maxValue(value) {
+          if (value != null && value != "") {
+            return value < new Date().toISOString();
+          }
+          return true;
+        },
       },
       IdentityDate: {
-        maxValue: (value) => value < new Date().toISOString(),
+        maxValue(value) {
+          if (value != null && value != "") {
+            return value < new Date().toISOString();
+          }
+          return true;
+        },
       },
     },
   },
@@ -483,7 +493,7 @@ export default {
               switch (status) {
                 case 400:
                   // Show popup danger to users
-                  _this.$emit("showPopupDanger", res.response.data.data);
+                  _this.$emit("showPopupDanger", res.response.data.data[0]);
                   break;
                 case 500:
                   _this.$emit("showPopupDanger", res.response.data.userMsg);
@@ -497,14 +507,12 @@ export default {
     },
 
     /**
-     *  Call function hide modal in parent component
+     *  Nhấn nút huỷ => ẩn modal
      *  Author: TTKien(6/12/2021)
      */
     onClickClose() {
       let _this = this;
-      // Call function to parent component Reset form
       this.$emit("resetFormData");
-      // Call function to parent component hide modal
       this.$emit("hideEmployeeModal");
       setTimeout(() => {
         _this.changeForm = 0;
@@ -513,7 +521,7 @@ export default {
     },
 
     /**
-     *  If change form, click btn exit show popup question
+     *  Nếu form bị thay đổi. Nhấn nút exit hiện popup hỏi người dùng
      *  Author: TTKien(6/12/2021)
      */
     onClickExit() {
@@ -529,7 +537,7 @@ export default {
   },
   watch: {
     /**
-     *  If change form, changeForm + 1
+     *  Nếu form thay đổi formchang + 1
      *  Author: TTKien(15/12/2021)
      */
     employee: {
@@ -539,6 +547,10 @@ export default {
       deep: true,
     },
 
+    /**
+     * Hiển thị modal focus vào mã nhân viên
+     * Author: TTKien(27/12/2021)
+     */
     isShowModal() {
       setTimeout(() => {
         this.$refs.txtEmployeeCode.focus();

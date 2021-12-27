@@ -96,7 +96,7 @@
                     class="m-checkbox"
                     v-bind:value="employee.EmployeeId"
                     v-model="selectedEmployees"
-                    @change="onChangeCheckAll()"
+                    @change="onChangeCheckBoxEmployee()"
                   />
                 </td>
 
@@ -225,7 +225,8 @@
       :isShowPopup="isShowPopup"
       :popup="popup"
       @onClickClosePopup="hidePopup"
-      @onClickComfirm="callApiDeleteEmployee"
+      @onClickDelete="callApiDeleteEmployee"
+      @onClickDeleteMutilple="callApiDeleteMutilpleEmployee"
       @hideEmployeeModal="hideEmployeeModal"
     ></base-popup>
     <!--=========== End Popup ===========-->

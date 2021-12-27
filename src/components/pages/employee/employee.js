@@ -37,6 +37,7 @@ export default {
       popup: {
         Title: "",
         Status: "",
+        Mode: 0
       },
       /*====================  Loading ==================== */
       /**
@@ -164,17 +165,6 @@ export default {
     },
 
     /**
-     * Nhấn nút xoá nhân viên => hiển thị popup cảnh báo
-     * Author: TTKien (14/12/2021)
-     */
-    onClickDeleteEmployee(model) {
-      this.employeeId = model.EmployeeId;
-      let title = `Bạn có chắc chắn muốn xoá nhân viên <${model.EmployeeCode}> không?`;
-      // Show popup warning
-      this.showPopupWarning(title);
-    },
-
-    /**
      * Nhấn nút nhân bản => Hiển thị modal
      * Modal hiển thị mã nhân viên mới và thông tin nhân viên đã chọn
      * Author: (26/12/2021)
@@ -187,6 +177,27 @@ export default {
       this.callApiGetEmployeeById(this.employeeId);
       // Hiển thị modal
       setTimeout(()=>this.showEmployeeModal(),0)
+    },
+
+    /**
+     * Nhấn nút xoá nhân viên => hiển thị popup cảnh báo
+     * Author: TTKien (14/12/2021)
+     */
+    onClickDeleteEmployee(model) {
+      this.employeeId = model.EmployeeId;
+      let title = `Bạn có chắc chắn muốn xoá nhân viên <${model.EmployeeCode}> không?`;
+      // Show popup warning
+      this.showPopupWarning(title, 0);
+    },
+
+    /**
+     * Nhấn nút xoá nhiều => Hiển thị popup cảnh báo
+     * Author: (26/12/2021)
+     */
+    onClickDeleteMutilpleEmployee() {
+      let title = `Bạn có chắc chắn muốn xoá những nhân viên đã chọn không?`;
+      // Hiển thị popup cảnh báo
+      this.showPopupWarning(title, 1);
     },
 
     /**
@@ -213,16 +224,6 @@ export default {
       //   .catch((res) => {
       //     console.log(res);
       //   });
-    },
-
-    /**
-     * Nhấn nút xoá nhiều => Hiển thị popup cảnh báo
-     * Author: (26/12/2021)
-     */
-    onClickDeleteMutilpleEmployee() {
-      let title = `Bạn có chắc chắn muốn xoá những nhân viên đã chọn không?`;
-      // Hiển thị popup cảnh báo
-      this.showPopupWarning(title);
     },
 
     /**
@@ -436,10 +437,11 @@ export default {
      * Hiển thị popup cảnh báo
      * Author: TTKien (14/12/2021)
      */
-    showPopupWarning(title) {
+    showPopupWarning(title, mode) {
       this.isShowPopup = true;
       this.popup.Status = "Warning";
       this.popup.Title = title;
+      this.popup.Mode = mode;
     },
 
     /**
