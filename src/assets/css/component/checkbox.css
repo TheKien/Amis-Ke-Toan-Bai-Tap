@@ -1,5 +1,6 @@
 input[type=checkbox].m-checkbox{
     -webkit-appearance: none;
+    cursor: pointer;
     width: 16px;
     height: 16px;
     border: 1px solid #afafaf;

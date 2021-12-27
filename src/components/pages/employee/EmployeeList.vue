@@ -83,7 +83,7 @@
                 <th>Chức danh</th>
                 <th>Tên đơn vị</th>
                 <th>Số tài khoản</th>
-                <th>Tên ngân hàng</th>
+                <th>Ngân hàng</th>
                 <!-- <th>Chi nhánh ngân hàng</th> -->
                 <th>Chức năng</th>
               </tr>
@@ -159,7 +159,10 @@
           </table>
         </div>
         <!-- End table -->
-        <div v-if="!employeeList || employeeList.length==0 && !loading" class="below-table">
+        <div
+          v-if="!employeeList || (employeeList.length == 0 && !loading)"
+          class="below-table"
+        >
           <div class="no-data">
             <img
               class="img-no-data"
@@ -173,7 +176,7 @@
       <!--===== End main content =====-->
 
       <!--===== Main footer =====-->
-      <div class="main-footer" v-if="employeeList && employeeList.length>0">
+      <div class="main-footer" v-if="employeeList && employeeList.length > 0">
         <div class="total-item">
           Tổng số: <strong>{{ totalRecord }}</strong> bản ghi
         </div>
@@ -214,8 +217,7 @@
       @hideEmployeeModal="hideEmployeeModal"
       @getAllEmployee="getEmployees"
       @onClickAddEmployee="onClickAddEmployee"
-      @showPopupDanger="showPopupDanger"
-      @showPopupQuestion="showPopupQuestion"
+      @showPopup="showPopup"
       @resetFormData="resetFormEmployee"
     ></employee-modal>
     <!--=========== End Modal ===========-->

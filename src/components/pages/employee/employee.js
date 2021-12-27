@@ -3,6 +3,8 @@ import moment from "moment";
 import EmployeeModal from "./EmployeeModal.vue";
 import BasePopup from "../../base/BasePopup.vue";
 import SlidingPagination from "vue-sliding-pagination";
+import Resource from "../../../core/resource.js";
+
 export default {
   components: {
     EmployeeModal: EmployeeModal,
@@ -33,11 +35,12 @@ export default {
       isShowPopup: false,
       /**
        * Nội dung, trạng thái của popup
+       * Mode 0 - xoá nhân viên, 1 - Xoá nhiều, 2 - cảnh báo
        */
       popup: {
-        Title: "",
-        Status: "",
-        Mode: 0
+        Title: null,
+        Status: null,
+        Mode: 0,
       },
       /*====================  Loading ==================== */
       /**
@@ -46,22 +49,22 @@ export default {
        */
       loading: false,
       /**
-       * Số cột của bảng 
+       * Số cột của bảng
        */
       cols: 0,
       /*==================== Dropdown ==================== */
       /**
        * Hiển thị/ ẩn dropdown nhân bản, xoá
-       * true - hiển thị, false - ẩn 
+       * true - hiển thị, false - ẩn
        */
       showBtnDel: false,
-       /**
+      /**
        * Hiển thị/ ẩn dropdown xoá nhiều
-       * true - hiển thị, false - ẩn 
+       * true - hiển thị, false - ẩn
        */
       showBtnDelMulti: false,
       /*==================== Check All ==================== */
-       /**
+      /**
        * Hiển thị/ ẩn dropdown nhân bản, xoá
        * true - check hết tất cả, false -  bỏ check tất cả
        */
@@ -78,7 +81,7 @@ export default {
       /**
        * Trang hiện tại
        */
-      
+
       pageNumber: 1,
       /**
        * Số lượng bản ghi trên 1 trang
@@ -161,7 +164,7 @@ export default {
       this.employeeId = id;
       this.callApiGetEmployeeById(this.employeeId);
       // Hiển thị modal
-      setTimeout(()=>this.showEmployeeModal(),0)
+      setTimeout(() => this.showEmployeeModal(), 0);
     },
 
     /**
@@ -176,7 +179,7 @@ export default {
       this.callApiGetEmployeeCodeNew();
       this.callApiGetEmployeeById(this.employeeId);
       // Hiển thị modal
-      setTimeout(()=>this.showEmployeeModal(),0)
+      setTimeout(() => this.showEmployeeModal(), 0);
     },
 
     /**
@@ -185,9 +188,10 @@ export default {
      */
     onClickDeleteEmployee(model) {
       this.employeeId = model.EmployeeId;
-      let title = `Bạn có chắc chắn muốn xoá nhân viên <${model.EmployeeCode}> không?`;
-      // Show popup warning
-      this.showPopupWarning(title, 0);
+      let title = Resource.PopUp.TitleWithParam(model.EmployeeCode);
+      let status = Resource.PopUp.Status.Warning;
+      let mode = Resource.PopUp.Mode.Delete;
+      this.showPopup(title, status, mode);
     },
 
     /**
@@ -195,9 +199,10 @@ export default {
      * Author: (26/12/2021)
      */
     onClickDeleteMutilpleEmployee() {
-      let title = `Bạn có chắc chắn muốn xoá những nhân viên đã chọn không?`;
-      // Hiển thị popup cảnh báo
-      this.showPopupWarning(title, 1);
+      let title = Resource.PopUp.Title.DeleteMultiple;
+      let status = Resource.PopUp.Status.Warning;
+      let mode = Resource.PopUp.Mode.DeleteMultiple;
+      this.showPopup(title, status, mode);
     },
 
     /**
@@ -209,21 +214,6 @@ export default {
         "https://localhost:44375/api/v1/Employees/ExportExcel",
         "_blank"
       );
-      // _api
-      //   .export(`${this.apiRouter}/ExportExcel`, this.employeeList)
-      //   .then(response => {
-      //     const url = URL.createObjectURL(new Blob([response.data], {
-      //       type: 'application/vnd.ms-excel'
-      //   }))
-      //   const link = document.createElement('a')
-      //   link.href = url
-      //   link.setAttribute('download', 'danh-sach')
-      //   document.body.appendChild(link)
-      //   link.click()
-      //   })
-      //   .catch((res) => {
-      //     console.log(res);
-      //   });
     },
 
     /**
@@ -258,7 +248,7 @@ export default {
      */
     onClickShowBtnDel(id) {
       this.employeeId = id;
-      setTimeout(()=>this.showBtnDel = !this.showBtnDel, 0)
+      setTimeout(() => (this.showBtnDel = !this.showBtnDel), 0);
     },
 
     /**
@@ -282,6 +272,12 @@ export default {
         this.isCheckAll = false;
       }
     },
+
+    /**
+     * Combobox thay đổi số lượng bản ghi trên 1 trang
+     * Author: TTKien(27/12/2021)
+     */
+    onClickShowCbxPagesize() {},
 
     /* ==================== Call Api ==================== */
 
@@ -397,7 +393,6 @@ export default {
           this.employee.IdentityDate = this.formatDateYYYYMMDD(
             this.employee.IdentityDate
           );
-          
         })
         .catch((res) => {
           console.log(res);
@@ -423,35 +418,17 @@ export default {
     },
 
     /**
-     * Hiển thị popup hỏi người dùng
+     * Hiển thị popup
      * @param {*} title văn bản thông báo
-     * Author: TTKien (14/12/2021)
+     * @param {*} status Trạng thái popup
+     * @param {*} mode Trạng thái popup
+     * Author: TTKien (28/12/2021)
      */
-    showPopupQuestion(title) {
+    showPopup(title, status, mode = null) {
       this.isShowPopup = true;
-      this.popup.Status = "Question";
-      this.popup.Title = title;
-    },
-
-    /**
-     * Hiển thị popup cảnh báo
-     * Author: TTKien (14/12/2021)
-     */
-    showPopupWarning(title, mode) {
-      this.isShowPopup = true;
-      this.popup.Status = "Warning";
+      this.popup.Status = status;
       this.popup.Title = title;
       this.popup.Mode = mode;
-    },
-
-    /**
-     * Hiển thị popup nguy hiểm
-     * Author: TTKien (14/12/2021)
-     */
-    showPopupDanger(title) {
-      this.isShowPopup = true;
-      this.popup.Status = "Danger";
-      this.popup.Title = title;
     },
 
     /**
@@ -537,8 +514,14 @@ export default {
      * Author: TTKien(14/12/2021)
      */
     inputSearch() {
-      this.pageNumber = 1;
-      this.getEmployees();
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.timer = setTimeout(() => {
+        this.pageNumber = 1;
+        this.getEmployees();
+      }, 2000);
     },
 
     /**
@@ -554,6 +537,7 @@ export default {
      * Tắt dropdown khi id thay đổi
      */
     employeeId() {
+      this.showBtnDelMulti = false;
       this.showBtnDel = false;
     },
 
@@ -561,7 +545,8 @@ export default {
      * Tắt dropdown khi danh sách nhân viên bị check thay đổi
      */
     selectedEmployees() {
+      this.showBtnDel = false;
       this.showBtnDelMulti = false;
-    }
+    },
   },
 };

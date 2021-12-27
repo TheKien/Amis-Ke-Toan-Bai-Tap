@@ -125,6 +125,7 @@
                       'm-form-error':
                         submitted && $v.employee.DateOfBirth.$error,
                     }"
+                    required
                   />
                 </div>
                 <div class="m-pl-10">
@@ -141,7 +142,7 @@
                       />
                       <label for="gender">Nam</label>
                     </div>
-                    <div class="m-radio-label">
+                    <div class="m-mr-20 m-radio-label">
                       <!-- Input Radio Gender:'Nữ' -->
                       <input
                         type="radio"
@@ -151,6 +152,17 @@
                         v-model="employee.Gender"
                       />
                       <label for="gender">Nữ</label>
+                    </div>
+                     <div class="m-radio-label">
+                      <!-- Input Radio Gender:'Khác' -->
+                      <input
+                        type="radio"
+                        class="m-radio"
+                        name="gender"
+                        value="2"
+                        v-model="employee.Gender"
+                      />
+                      <label for="gender">Khác</label>
                     </div>
                   </div>
                 </div>
@@ -177,6 +189,7 @@
                       'm-form-error':
                         submitted && $v.employee.IdentityDate.$error,
                     }"
+                     required
                   />
                 </div>
               </div>
@@ -212,6 +225,9 @@
                 class="m-form-input"
                 v-mask="'0##-###-####'"
                 v-model="employee.PhoneNumber"
+                :class="{
+                  'm-form-error': submitted && $v.employee.PhoneNumber.$error,
+                }"
               />
             </div>
             <div class="m-pr-6">
@@ -295,12 +311,18 @@
 
 <script>
 import _api from "../../../services/ApiService.js";
-import { required, email } from "vuelidate/lib/validators";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+} from "vuelidate/lib/validators";
 import { eventBus } from "../../../main";
+import Resource from "../../../core/resource.js";
 
 export default {
   created() {
-    this.getDeparment();
+    this.callApiGetDeparments();
 
     /**
      * Hide modal global
@@ -325,6 +347,7 @@ export default {
       departmentList: [],
       submitted: false,
       changeForm: 0,
+      modeBtn: 0,
     };
   },
 
@@ -359,25 +382,14 @@ export default {
           return true;
         },
       },
+      PhoneNumber: {
+        minLength: minLength(12),
+        maxLength: maxLength(12),
+      },
     },
   },
   methods: {
-    /**
-     *  Lấy tất cả phòng ban
-     *  Author: TTKien(6/12/2021)
-     */
-    getDeparment() {
-      // Call api
-      _api
-        .get("/Departments")
-        .then((response) => {
-          this.departmentList = response.data;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
+    /* ==================== Event ==================== */
     /**
      * Nhấn nút cất hoặc cất và thêm
      * @param {*} modeBtn modeBtn=0 - nút cất, modeBtn=1 - nút cất và thêm
@@ -385,41 +397,68 @@ export default {
      */
     onClickSubmit(modeBtn) {
       let _this = this;
+      this.modeBtn = modeBtn;
       // On validate
       this.submitted = true;
       this.$v.$touch();
       // if data error
       if (this.$v.$invalid) {
         if (!this.$v.employee.EmployeeCode.required) {
-          this.$emit("showPopupDanger", "Mã nhân viên không được bỏ trống!");
+          this.$emit(
+            "showPopup",
+            Resource.Message.ValidateNotValid.EmployeeCodeIsEmpty,
+            Resource.PopUp.Status.Danger
+          );
           return;
         }
         if (!this.$v.employee.EmployeeName.required) {
-          this.$emit("showPopupDanger", "Tên nhân viên không được bỏ trống!");
+          this.$emit(
+            "showPopup",
+            Resource.Message.ValidateNotValid.EmployeeNameIsEmpty,
+            Resource.PopUp.Status.Danger
+          );
           return;
         }
         if (!this.$v.employee.DepartmentId.required) {
           this.$emit(
-            "showPopupDanger",
-            "Đơn vị nhân viên không được bỏ trống!"
+            "showPopup",
+            Resource.Message.ValidateNotValid.DepartmentIsEmpty,
+            Resource.PopUp.Status.Danger
           );
           return;
         }
         if (!this.$v.employee.Email.email) {
-          this.$emit("showPopupDanger", "Email sai định dạng!");
+          this.$emit(
+            "showPopup",
+            Resource.Message.ValidateNotValid.EmailError,
+            Resource.PopUp.Status.Danger
+          );
           return;
         }
         if (!this.$v.employee.DateOfBirth.maxValue) {
           this.$emit(
-            "showPopupDanger",
-            "Ngày sinh không được lớn hơn ngày hiện tại!"
+            "showPopup",
+            Resource.Message.ValidateNotValid.DateOfBirthError,
+            Resource.PopUp.Status.Danger
           );
           return;
         }
         if (!this.$v.employee.IdentityDate.maxValue) {
           this.$emit(
-            "showPopupDanger",
-            "Ngày sinh không được lớn hơn ngày hiện tại!"
+            "showPopup",
+            Resource.Message.ValidateNotValid.IndentityDateError,
+            Resource.PopUp.Status.Danger
+          );
+          return;
+        }
+        if (
+          !this.$v.employee.PhoneNumber.maxLength ||
+          !this.$v.employee.PhoneNumber.minLength
+        ) {
+          this.$emit(
+            "showPopup",
+            Resource.Message.ValidateNotValid.PhoneNumberError,
+            Resource.PopUp.Status.Danger
           );
           return;
         }
@@ -427,81 +466,10 @@ export default {
       } else {
         // CREATE EMPLOYEE
         if (this.isCreate) {
-          _api
-            .create(this.apiRouter, this.employee)
-            .then(() => {
-              // Reset data
-              this.$emit("getAllEmployee");
-              this.submitted = false;
-              // Select button 'cất '
-              if (modeBtn == 0) {
-                // Hide modal
-                this.onClickClose();
-              } else {
-                // Select button 'cất và thêm'
-                // Reset Form
-                this.$emit("resetFormData");
-                this.$emit("onClickAddEmployee");
-                this.submitted = false;
-                setTimeout(() => {
-                  this.changeForm = 0;
-                }, 0);
-              }
-            })
-            .catch(function (res) {
-              const status = res.response.status;
-              console.log(res);
-
-              switch (status) {
-                case 400:
-                  // Show popup danger to users
-                  _this.$emit("showPopupDanger", res.response.data.data[0]);
-                  break;
-                case 500:
-                  _this.$emit("showPopupDanger", res.response.data.userMsg);
-                  break;
-                default:
-                  break;
-              }
-            });
+          _this.callApiCreateEmployee();
         } else {
           // UPDATE
-          _api
-            .update(this.apiRouter, this.employeeId, this.employee)
-            .then(() => {
-              // Reset data
-              this.$emit("getAllEmployee");
-              // Select button 'cất'
-              if (modeBtn == 0) {
-                // Hide modal
-                this.onClickClose();
-              } else {
-                // Select button 'cất và thêm'
-                // Reset Form
-                this.$emit("resetFormData");
-                // get new EmployeeCode
-                this.$emit("onClickAddEmployee");
-                this.submitted = false;
-                setTimeout(() => {
-                  this.changeForm = 0;
-                }, 0);
-              }
-            })
-            .catch(function (res) {
-              console.log(res.response.data);
-              const status = res.response.status;
-              switch (status) {
-                case 400:
-                  // Show popup danger to users
-                  _this.$emit("showPopupDanger", res.response.data.data[0]);
-                  break;
-                case 500:
-                  _this.$emit("showPopupDanger", res.response.data.userMsg);
-                  break;
-                default:
-                  break;
-              }
-            });
+          _this.callApiUpdateEmployee();
         }
       }
     },
@@ -527,14 +495,152 @@ export default {
     onClickExit() {
       if (this.changeForm > 1) {
         this.$emit(
-          "showPopupQuestion",
-          "Dữ liệu đã bị thay đổi. Bạn có muốn cất không?"
+          "showPopup",
+          Resource.PopUp.Title.Question,
+          Resource.PopUp.Status.Question
         );
       } else {
         this.onClickClose();
       }
     },
+    /* ==================== Call Api ==================== */
+    /**
+     *  Lấy tất cả phòng ban
+     *  Author: TTKien(6/12/2021)
+     */
+    callApiGetDeparments() {
+      // Call api
+      _api
+        .get("/Departments")
+        .then((response) => {
+          this.departmentList = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    /**
+     * Gọi api thêm nhân viên
+     * Author(27/12/2021)
+     */
+    callApiCreateEmployee() {
+      let _this = this;
+      try {
+        _api
+          .create(this.apiRouter, this.employee)
+          .then(() => {
+            // Reset data
+            this.$emit("getAllEmployee");
+            // Select button 'cất '
+            if (this.modeBtn == 0) {
+              // Hide modal
+              this.onClickClose();
+            } else {
+              //'cất và thêm'
+              // Reset Form
+              this.$emit("resetFormData");
+              this.$emit("onClickAddEmployee");
+              setTimeout(() => {
+                this.submitted = false;
+                this.changeForm = 0;
+              }, 0);
+            }
+          })
+          .catch(function (res) {
+            const status = res.response.status;
+            switch (status) {
+              case 400:
+                // Show popup danger to users
+                _this.$emit(
+                  "showPopup",
+                  res.response.data.data[0],
+                  Resource.PopUp.Status.Warning,
+                  Resource.PopUp.Mode.Warning
+                );
+                break;
+              case 500:
+                _this.$emit(
+                  "showPopup",
+                  res.response.data.userMsg,
+                  Resource.PopUp.Status.Danger
+                );
+                break;
+              default:
+                break;
+            }
+          });
+      } catch (error) {
+        console.log(error);
+        this.$emit(
+          "showPopup",
+          Resource.Message.Warning,
+          Resource.PopUp.Status.Danger
+        );
+      }
+    },
+
+    /**
+     * Gọi api thêm nhân viên
+     * Author(27/12/2021)
+     */
+    callApiUpdateEmployee() {
+      let _this = this;
+      try {
+        _api
+          .update(this.apiRouter, this.employeeId, this.employee)
+          .then(() => {
+            // Reset data
+            this.$emit("getAllEmployee");
+            // Select button 'cất'
+            if (this.modeBtn == 0) {
+              // Hide modal
+              this.onClickClose();
+            } else {
+              // Select button 'cất và thêm'
+              // Reset Form
+              this.$emit("resetFormData");
+              // get new EmployeeCode
+              this.$emit("onClickAddEmployee");
+              this.submitted = false;
+              setTimeout(() => {
+                this.changeForm = 0;
+              }, 0);
+            }
+          })
+          .catch(function (res) {
+            const status = res.response.status;
+            switch (status) {
+              case 400:
+                // Show popup danger to users
+                _this.$emit(
+                  "showPopup",
+                  res.response.data.data[0],
+                  Resource.PopUp.Status.Warning,
+                  Resource.PopUp.Mode.Warning
+                );
+                break;
+              case 500:
+                _this.$emit(
+                  "showPopup",
+                  res.response.data.userMsg,
+                  Resource.PopUp.Status.Danger
+                );
+                break;
+              default:
+                break;
+            }
+          });
+      } catch (error) {
+        console.log(error);
+        this.$emit(
+          "showPopup",
+          Resource.Message.Warning,
+          Resource.PopUp.Status.Danger
+        );
+      }
+    },
   },
+
   watch: {
     /**
      *  Nếu form thay đổi formchang + 1

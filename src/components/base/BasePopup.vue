@@ -21,7 +21,7 @@
         <div class="m-mess-line"></div>
       </div>
       <div class="m-popup-bottom">
-        <div v-if="popup.Status == 'Warning'" class="m-flex-between">
+        <div v-if="popup.Status == 'Warning' && popup.Mode < 2" class="m-flex-between">
           <!-- Button close -->
           <button class="m-btn m-btn-gray" @click="onClickClose()">
             Không
@@ -29,6 +29,12 @@
           <!-- Button comfirm -->
           <button class="m-btn m-btn-success" @click="onClickComfirm()">
             Có
+          </button>
+        </div>
+        <div v-if="popup.Status == 'Warning' && popup.Mode === 2" class="m-flex-justify-end">
+          <!-- Button close -->
+          <button class="m-btn m-btn-success" @click="onClickClose()">
+            Đồng ý
           </button>
         </div>
         <div v-if="popup.Status == 'Danger'" class="m-flex-justify-center">
@@ -63,12 +69,14 @@ export default {
   data() {
     return {
       icon: "",
+      status: null,
     };
   },
 
   props: ["isShowPopup", "popup"],
 
   methods: {
+  
     /**
      * If click OK, call function in father-component
      * Author: TTKien (12/12/2021)

@@ -1,3 +1,15 @@
+
+  
+input[type="date"] {
+  font-family: NotoSans;
+  color: #000;
+
+}
+input[type=date]:invalid::-webkit-datetime-edit {
+  font-family: NotoSans-Italic !important;
+  text-transform: uppercase;
+  color: #888;
+}
 .m-input {
  position: relative;
  display: inline-block;

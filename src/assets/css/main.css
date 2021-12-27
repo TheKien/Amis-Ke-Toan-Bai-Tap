@@ -19,7 +19,7 @@
 @import url("component/toast.css");
  */
 body {
-  font-family: NotoSans;
+  font-family: NotoSans !important;
   font-size: 13px;
 }
 *{
@@ -31,6 +31,8 @@ body {
 a{
   cursor: pointer;
 }
+
+
 @font-face {
   font-family: NotoSans;
   src: url("../content/fonts/notosans-regular.2cb88a13.woff2");
