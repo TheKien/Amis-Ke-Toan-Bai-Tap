@@ -40,6 +40,7 @@
                     type="text"
                     class="m-form-input"
                     style="width: 150px"
+                    ref="txtEmployeeCode"
                     v-model="employee.EmployeeCode"
                     :class="{
                       'm-form-error':
@@ -76,11 +77,18 @@
                   }"
                 >
                   <template #list-header>
-                    <!-- <div><span>Mã đơn vị</span>  <span>Tên đơn vị</span> </div> -->
+                    <div class="vs__header">
+                      <div class="m-flex">
+                        <div class="vs__option"><b>Mã đơn vị</b></div>
+                        <div class="vs__option"><b>Tên đơn vị</b></div>
+                      </div>
+                    </div>
                   </template>
                   <template v-slot:option="option">
-                    <!-- {{ option.DepartmentCode }} -->
-                    {{ option.DepartmentName }}
+                    <div class="m-flex">
+                      <div class="vs__option">{{ option.DepartmentCode }}</div>
+                      <div class="vs__option">{{ option.DepartmentName }}</div>
+                    </div>
                   </template>
                   <template v-slot:no-options="{ search, searching }">
                     <template v-if="searching">
@@ -113,6 +121,10 @@
                     type="date"
                     class="m-form-input"
                     v-model="employee.DateOfBirth"
+                    :class="{
+                      'm-form-error':
+                        submitted && $v.employee.DateOfBirth.$error,
+                    }"
                   />
                 </div>
                 <div class="m-pl-10">
@@ -161,6 +173,10 @@
                     type="date"
                     class="m-form-input"
                     v-model="employee.IdentityDate"
+                    :class="{
+                      'm-form-error':
+                        submitted && $v.employee.IdentityDate.$error,
+                    }"
                   />
                 </div>
               </div>
@@ -194,7 +210,7 @@
               <input
                 type="text"
                 class="m-form-input"
-                v-mask="'###-###-####'"
+                v-mask="'0##-###-####'"
                 v-model="employee.PhoneNumber"
               />
             </div>
@@ -214,6 +230,9 @@
                 type="text"
                 class="m-form-input"
                 v-model="employee.Email"
+                :class="{
+                  'm-form-error': submitted && $v.employee.Email.$error,
+                }"
               />
             </div>
           </div>
@@ -276,12 +295,13 @@
 
 <script>
 import _api from "../../../services/ApiService.js";
-import { required } from "vuelidate/lib/validators";
+import { required, email } from "vuelidate/lib/validators";
 import { eventBus } from "../../../main";
 
 export default {
   created() {
     this.getDeparment();
+
     /**
      * Hide modal global
      * Author: TTKien(15/12/2021)
@@ -320,11 +340,20 @@ export default {
       DepartmentId: {
         required,
       },
+      Email: {
+        email,
+      },
+      DateOfBirth: {
+        maxValue: (value) => value < new Date().toISOString(),
+      },
+      IdentityDate: {
+        maxValue: (value) => value < new Date().toISOString(),
+      },
     },
   },
   methods: {
     /**
-     *  Get All Department
+     *  Lấy tất cả phòng ban
      *  Author: TTKien(6/12/2021)
      */
     getDeparment() {
@@ -340,7 +369,8 @@ export default {
     },
 
     /**
-     * Click button save and exit
+     * Nhấn nút cất hoặc cất và thêm
+     * @param {*} modeBtn modeBtn=0 - nút cất, modeBtn=1 - nút cất và thêm
      * Author: TTKien(6/12/2021)
      */
     onClickSubmit(modeBtn) {
@@ -351,15 +381,36 @@ export default {
       // if data error
       if (this.$v.$invalid) {
         if (!this.$v.employee.EmployeeCode.required) {
-          this.$emit("showPopupDanger", "Mã nhân viên không được bỏ trống");
+          this.$emit("showPopupDanger", "Mã nhân viên không được bỏ trống!");
           return;
         }
         if (!this.$v.employee.EmployeeName.required) {
-          this.$emit("showPopupDanger", "Tên nhân viên không được bỏ trống");
+          this.$emit("showPopupDanger", "Tên nhân viên không được bỏ trống!");
           return;
         }
         if (!this.$v.employee.DepartmentId.required) {
-          this.$emit("showPopupDanger", "Đơn vị nhân viên không được bỏ trống");
+          this.$emit(
+            "showPopupDanger",
+            "Đơn vị nhân viên không được bỏ trống!"
+          );
+          return;
+        }
+        if (!this.$v.employee.Email.email) {
+          this.$emit("showPopupDanger", "Email sai định dạng!");
+          return;
+        }
+        if (!this.$v.employee.DateOfBirth.maxValue) {
+          this.$emit(
+            "showPopupDanger",
+            "Ngày sinh không được lớn hơn ngày hiện tại!"
+          );
+          return;
+        }
+        if (!this.$v.employee.IdentityDate.maxValue) {
+          this.$emit(
+            "showPopupDanger",
+            "Ngày sinh không được lớn hơn ngày hiện tại!"
+          );
           return;
         }
         return;
@@ -404,7 +455,7 @@ export default {
               }
             });
         } else {
-          // UPDATE EMPLOYEE
+          // UPDATE
           _api
             .update(this.apiRouter, this.employeeId, this.employee)
             .then(() => {
@@ -434,7 +485,7 @@ export default {
                   // Show popup danger to users
                   _this.$emit("showPopupDanger", res.response.data.data);
                   break;
-                  case 500:
+                case 500:
                   _this.$emit("showPopupDanger", res.response.data.userMsg);
                   break;
                 default:
@@ -449,13 +500,16 @@ export default {
      *  Call function hide modal in parent component
      *  Author: TTKien(6/12/2021)
      */
-    async onClickClose() {
+    onClickClose() {
+      let _this = this;
       // Call function to parent component Reset form
-      await this.$emit("resetFormData");
+      this.$emit("resetFormData");
       // Call function to parent component hide modal
       this.$emit("hideEmployeeModal");
-      this.changeForm = 0;
-      this.submitted = false;
+      setTimeout(() => {
+        _this.changeForm = 0;
+        _this.submitted = false;
+      }, 0);
     },
 
     /**
@@ -483,6 +537,12 @@ export default {
         this.changeForm += 1;
       },
       deep: true,
+    },
+
+    isShowModal() {
+      setTimeout(() => {
+        this.$refs.txtEmployeeCode.focus();
+      }, 10);
     },
   },
 };

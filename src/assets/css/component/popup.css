@@ -4,7 +4,7 @@
 .m-popup {
     position: absolute;
     background-color: #ffffff;
-    z-index: 5;
+    z-index: 21;
     width: 444px;
     top: 50%;
     left: 50%;
@@ -33,7 +33,7 @@
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: 4;
+    z-index: 20;
   }
 .m-popup-show {
     display: block;

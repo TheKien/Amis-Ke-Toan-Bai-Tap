@@ -28,6 +28,9 @@ body {
   outline: none;
   text-decoration: none;
 }
+a{
+  cursor: pointer;
+}
 @font-face {
   font-family: NotoSans;
   src: url("../content/fonts/notosans-regular.2cb88a13.woff2");

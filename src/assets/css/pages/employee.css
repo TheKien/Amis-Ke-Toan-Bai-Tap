@@ -1,0 +1,23 @@
+.batch-execution {
+  justify-content: start;
+  border-radius: 30px;
+  border: 2px solid #3b3c3f;
+  padding: 0 16px;
+  background: #fff;
+}
+
+.batch-execution:hover {
+  background-color: #d2d3d6;
+}
+
+.batch-execution:active {
+    background-color: #b1b1b3;
+  }
+.batch-execution .m-dropdown .m-dropdown-list {
+  top: 38px;
+  left: 73px;
+}
+
+.batch-execution .m-dropdown .m-dropdown-list .m-dropdown-item:hover {
+    color: #000;
+}

@@ -5,6 +5,8 @@ input[type=checkbox].m-checkbox{
     border: 1px solid #afafaf;
     border-radius: 2px;
     transform: rotate(-90deg);
+    transition: transform .15s linear;
+    background: #fff;
 }
 
 input[type=checkbox].m-checkbox:checked {

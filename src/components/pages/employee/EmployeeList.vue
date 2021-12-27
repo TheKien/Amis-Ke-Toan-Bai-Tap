@@ -15,7 +15,34 @@
       <!--===== Main content =====-->
       <div class="main-content">
         <div class="main-search">
-          <button @click="onclickDeleteSelectEmployee()">Xoas all</button>
+          <!-- Button xoá nhiều -->
+          <a
+            class="batch-execution"
+            @click="showBtnDelMulti = !showBtnDelMulti"
+          >
+            <div
+              class="m-dropdown"
+              style="border: none"
+              :class="{
+                'm-dropdown-active':
+                  showBtnDelMulti && selectedEmployees.length > 0,
+              }"
+            >
+              <div class="m-flex-item-center" style="height: 32px">
+                <div class="m-pr-4"><b>Thực hiện hàng loạt</b></div>
+                <div class="mi mi-16 mi-arrow-up--black">
+                  <div class="m-dropdown-list">
+                    <div class="m-dropdown-item">
+                      <div @click="onClickDeleteMutilpleEmployee()">
+                        Xóa nhiều
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <div class="option"></div>
           <!-- Input search -->
           <div class="m-input">
             <input
@@ -36,7 +63,7 @@
           </a>
         </div>
         <!-- Table -->
-        <div class="main-table">
+        <div class="main-table" v-if="employeeList">
           <table class="m-table" id="tblEmployee">
             <thead>
               <tr>
@@ -57,7 +84,7 @@
                 <th>Tên đơn vị</th>
                 <th>Số tài khoản</th>
                 <th>Tên ngân hàng</th>
-                <th>Chi nhánh ngân hàng</th>
+                <!-- <th>Chi nhánh ngân hàng</th> -->
                 <th>Chức năng</th>
               </tr>
             </thead>
@@ -69,7 +96,7 @@
                     class="m-checkbox"
                     v-bind:value="employee.EmployeeId"
                     v-model="selectedEmployees"
-                    @change="updateCheckAll()"
+                    @change="onChangeCheckAll()"
                   />
                 </td>
 
@@ -84,7 +111,7 @@
                 <td v-if="!loading">{{ employee.DepartmentName }}</td>
                 <td v-if="!loading">{{ employee.BankAccount }}</td>
                 <td v-if="!loading">{{ employee.BankName }}</td>
-                <td v-if="!loading">{{ employee.BankBranch }}</td>
+                <!-- <td v-if="!loading">{{ employee.BankBranch }}</td> -->
                 <td v-if="!loading">
                   <div class="m-flex-item-center">
                     <div
@@ -123,20 +150,30 @@
                   </div>
                 </td>
                 <td v-for="col in cols" :key="col">
-                    <content-placeholders>
-                      <content-placeholders-text :lines="1" />
-                    </content-placeholders>
-                  </td>
+                  <content-placeholders>
+                    <content-placeholders-text :lines="1" />
+                  </content-placeholders>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!-- End table -->
+        <div v-if="!employeeList || employeeList.length==0 && !loading" class="below-table">
+          <div class="no-data">
+            <img
+              class="img-no-data"
+              src="https://actappg1.misacdn.net/img/bg_report_nodata.76e50bd8.svg"
+              alt=""
+            />
+            <div>Không có dữ liệu</div>
+          </div>
+        </div>
       </div>
       <!--===== End main content =====-->
 
       <!--===== Main footer =====-->
-      <div class="main-footer">
+      <div class="main-footer" v-if="employeeList && employeeList.length>0">
         <div class="total-item">
           Tổng số: <strong>{{ totalRecord }}</strong> bản ghi
         </div>
@@ -156,7 +193,7 @@
           <sliding-pagination
             :current="pageNumber"
             :total="totalPage"
-            @page-change="pageChange"
+            @page-change="onChangePageNumber"
             :slidingEndingSize="1"
             :slidingWindowSize="3"
             :nonSlidingSize="3"
@@ -175,11 +212,11 @@
       :employee="employee"
       :employeeId="employeeId"
       @hideEmployeeModal="hideEmployeeModal"
-      @getAllEmployee="getAllEmployee"
+      @getAllEmployee="getEmployees"
       @onClickAddEmployee="onClickAddEmployee"
       @showPopupDanger="showPopupDanger"
       @showPopupQuestion="showPopupQuestion"
-      @resetFormData="resetFormData"
+      @resetFormData="resetFormEmployee"
     ></employee-modal>
     <!--=========== End Modal ===========-->
 
@@ -188,7 +225,7 @@
       :isShowPopup="isShowPopup"
       :popup="popup"
       @onClickClosePopup="hidePopup"
-      @onClickComfirm="deleteEmployee"
+      @onClickComfirm="callApiDeleteEmployee"
       @hideEmployeeModal="hideEmployeeModal"
     ></base-popup>
     <!--=========== End Popup ===========-->
@@ -196,7 +233,7 @@
 </template>
 
 <!-- SCRIPT -->
-<script src="../../../assets/js/pages/employee.js"></script>
+<script src="./employee.js"></script>
 <!-- SCRIPT -->
 
 <!-- CSS -->
