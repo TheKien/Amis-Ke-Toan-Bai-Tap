@@ -181,15 +181,61 @@
           Tổng số: <strong>{{ totalRecord }}</strong> bản ghi
         </div>
         <div class="option"></div>
+        
         <!-- Combobox change page size -->
-        <div class="page-size">
-          <select name="" id="" v-model="pageSize" style="padding: 5px 10px">
-            <option value="10">10 bản ghi trên trang</option>
-            <option value="20">20 bản ghi trên trang</option>
-            <option value="30">30 bản ghi trên trang</option>
-            <option value="50">50 bản ghi trên trang</option>
-            <option value="100">100 bản ghi trên trang</option>
-          </select>
+       <div class="m-page-size m-flex-item-center">
+          <div class="page-size-text">{{ pageSize }} bản ghi trên trang</div>
+          <div
+            class="m-dropdown"
+            :class="{
+              'm-dropdown-active': showDropListPageSize,
+            }"
+          >
+            <div
+              class="m-icon-arrow"
+              @click="showDropListPageSize = !showDropListPageSize"
+            >
+              <div class="mi mi-14 mi-arrow-up--black"></div>
+            </div>
+            <div class="m-dropdown-list">
+              <div
+                class="m-dropdown-item"
+                :class="{
+                  'm-dropdown-item-active': pageSize==10,
+                }"
+                @click="pageSize=10"
+              >
+                10 bản ghi trên trang
+              </div>
+              <div
+                class="m-dropdown-item"
+                :class="{
+                  'm-dropdown-item-active': pageSize==20,
+                }"
+                @click="pageSize=20"
+              >
+                20 bản ghi trên trang
+              </div>
+              <div
+                class="m-dropdown-item"
+                :class="{
+                  'm-dropdown-item-active': pageSize==30,
+                }"
+                @click="pageSize=30"
+              >
+                30 bản ghi trên trang
+              </div>
+              <div
+                class="m-dropdown-item"
+                :class="{
+                  'm-dropdown-item-active': pageSize==100,
+                }"
+                @click="pageSize=100"
+              >
+                100 bản ghi trên trang
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Pagination -->
         <div class="m-panigation">

@@ -63,6 +63,11 @@ export default {
        * true - hiển thị, false - ẩn
        */
       showBtnDelMulti: false,
+      /**
+       * Hiển thị/ ẩn dropdown thay đổi số bản ghi trên trang
+       * true - hiển thị, false - ẩn 
+       */
+      showDropListPageSize: false,
       /*==================== Check All ==================== */
       /**
        * Hiển thị/ ẩn dropdown nhân bản, xoá
@@ -521,7 +526,7 @@ export default {
       this.timer = setTimeout(() => {
         this.pageNumber = 1;
         this.getEmployees();
-      }, 2000);
+      }, 1500);
     },
 
     /**
@@ -529,6 +534,7 @@ export default {
      * Author: TTKien(14/12/2021)
      */
     pageSize() {
+      this.showDropListPageSize = false;
       this.pageNumber = 1;
       this.getEmployees();
     },

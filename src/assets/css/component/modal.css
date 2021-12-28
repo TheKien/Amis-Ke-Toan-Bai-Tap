@@ -39,6 +39,15 @@
 /* Modal content */
 .m-modal-content {
   padding: 0 32px;
+  height: calc(100vh - 216px);
+  overflow: auto;
+}
+.m-modal-content::-webkit-scrollbar-thumb {
+  background: #b8bcc3;
+}
+.m-modal-content::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f1f1f1;
 }
 .m-modal-content .m-popup-icon {
   display: flex;
